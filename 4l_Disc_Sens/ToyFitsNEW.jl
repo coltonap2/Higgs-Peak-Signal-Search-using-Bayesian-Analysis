@@ -6,7 +6,7 @@ using ..ToyGeneration
 using Random
 Random.seed!(42)
 
-export fit_toys
+export fit_toys, get_log_bf
 
 prior_for_toys = BAT.NamedTupleDist(
     mu = Uniform(0, 5)
@@ -192,7 +192,7 @@ display(inverted_plot)
 # Fits using weighted least squares with weights from yerr
 # Rejects bad fits based on local maxima, bad chi squared/p-value, or too many parameters hitting upper bound
 
-function weighted_polynomial_fit(x, y, yerr; degrees=[2,4,6,8], x0=0.0, upper_bound=samples_toys_mode.mu + 1 * nll_std)
+function weighted_polynomial_fit(x, y, yerr; degrees=[2,4,6], x0=0.0, upper_bound=samples_toys_mode.mu + 1 * nll_std)
     best_p = -1.0 # Initial placeholder p value
     best_result = nothing
     W = Diagonal(1.0 ./ yerr.^2) # Weights for the fit
@@ -212,15 +212,12 @@ function weighted_polynomial_fit(x, y, yerr; degrees=[2,4,6,8], x0=0.0, upper_bo
         # Reject fits with local maxima
         deriv_coeffs = [i * coeffs[i+1] for i in 1:deg] # Coefficients of the derivative
         has_max = false # placeholder for local max check
-        xs = range(0, stop=upper_bound, length=100)
-            for x_test in xs
-                xt = x_test - x0
-            # derivative at x
-            d = sum(deriv_coeffs[i] * xt^(i-1) for i in 1:length(deriv_coeffs))
+        xs = range(0, stop=upper_bound, length=1000) 
+        for x_test in 1:(length(xs)-1)
 
             # check sign change
-            xt_before = (x_test - 0.01) - x0
-            xt_after  = (x_test + 0.01) - x0
+            xt_before = xs[x_test] - x0
+            xt_after  = xs[x_test + 1] - x0
 
             d_before = sum(deriv_coeffs[i] * xt_before^(i-1) for i in 1:length(deriv_coeffs))
             d_after  = sum(deriv_coeffs[i] * xt_after^(i-1) for i in 1:length(deriv_coeffs))
@@ -304,11 +301,13 @@ plot_with_fit = scatter(
     bottom_margin = 3mm,
     right_margin = 3mm,
     top_margin = 3mm,
-    legend = :topright
+    legend = :topright,
+    ylims = (0, 20)
 )
 
 plot!(plot_with_fit, x_range, y_fit,
     label = "Polynomial Fit (degree $(weighted_polynomial_fit_result.degree))",
+    ylim = (0, 20),
     lw = 3,
     color = :red,
     linestyle = :solid
@@ -329,7 +328,7 @@ function get_log_bf(current_toy)
     posterior = PosteriorDensity(log_likelihood_density, prior_for_toys)
 
     # 2. Sample
-    samples = bat_sample(posterior, MCMCSampling(mcalg = MetropolisHastings(), nsteps = 10^4, nchains = 2)).result
+    samples = bat_sample(posterior, MCMCSampling(mcalg = MetropolisHastings(), nsteps = 10^4, nchains = 4)).result
     
     # 3. Process samples to NLL
     mu_vals = [s.v.mu for s in samples]
@@ -359,7 +358,7 @@ function get_log_bf(current_toy)
 end
 
 # --- RUN THE LOOP ---
-num_toys = 100
+num_toys = 10
 log_BF_results = []
 
 println("Starting fits for $num_toys toys...")
@@ -389,5 +388,10 @@ final_graph = histogram(log_BF_results,
     fillalpha = 0.8)
 
 display(final_graph)
-println("Mean Log BF: ", mean(log_BF_results))
+
+# Filter out NaNs and then take the mean
+clean_results = filter(x -> !isnan(x) && x != 0.0, log_BF_results)
+avg_log_bf = mean(clean_results)
+
+println("Mean Log BF (excluding NaNs): ", avg_log_bf)
 end
