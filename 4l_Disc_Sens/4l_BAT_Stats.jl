@@ -1,7 +1,7 @@
-using Pkg
-Pkg.add(["CSV", "DataFrames", "StatsBase", "BAT", "Distributions", 
-        "Optim", "Plots", "IntervalSets", "DensityInterface", 
-        "Measures"])
+#using Pkg
+#Pkg.add(["CSV", "DataFrames", "StatsBase", "BAT", "Distributions", 
+ #       "Optim", "Plots", "IntervalSets", "DensityInterface", 
+ #       "Measures"])
 
 module HiggsAnalysis3
 
@@ -19,9 +19,6 @@ export log_likelihood,
 # 1) Names and DataFrames
 # 1a) Full spectrum histogram
 data_dir = normpath(joinpath(@__DIR__, "..", "higgs_fit_data"))
-
-println("DATA DIR: ", data_dir)
-println("FILES: ", readdir(data_dir))
 
 df_full = CSV.read(
     joinpath(data_dir, "full_spectrum_histograms.csv"),
@@ -44,7 +41,6 @@ fit_data_observed = df_fit.data_observed
 fit_error = df_fit.data_stat_error
 fit_signal = df_fit.signal_expected
 fit_background = df_fit.background_expected
-
 
 # 2) MC + Data plot, full spectrum histogram
 plot_full = plot(
@@ -132,8 +128,6 @@ samples = bat_sample(
     # could also use 'mcalg = HamiltonianMonteCarlo'
 ).result
 
-println("BAT STATS...")
-println("coming soon to a town near you!!!!!!")
 bat_report(samples)
 display(bat_report(samples))
 
@@ -188,9 +182,6 @@ display(pdf_posterior)
 
 # Best fit model for the higgs window
 expected_bestfit = best_fit.mu .* fit_signal .+ fit_background
-
-using Plots
-using Plots.Measures # Required for margin adjustments
 
 # --- 1. Main Fit Plot (Top) ---
 p1 = plot(
@@ -281,11 +272,5 @@ p_matrix = plot(
 
 display(p_bat)
 display(p_matrix)
-
-# 1. Calculate the Residuals (Data - Total Model)
-# Total Model = (μ * Signal) + Background
-
-
-#display(p_residual_final)
 
 end

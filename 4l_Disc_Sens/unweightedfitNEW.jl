@@ -4,7 +4,7 @@ using DelimitedFiles, Plots, LaTeXStrings, LsqFit
 
 export fit_unweighted_power
 
-function fit_unweighted_power(; csv_path="sensitivity_results.csv")
+function fit_unweighted_power(; csv_path=joinpath(@__DIR__, "sensitivity_results.csv"))
     # 1. Load Data
     if !isfile(csv_path)
         error("File '$csv_path' not found.")
@@ -48,6 +48,6 @@ function fit_unweighted_power(; csv_path="sensitivity_results.csv")
     return fit.param
 end
 
-fit_unweighted_power(; csv_path="sensitivity_results.csv")
+fit_unweighted_power(; csv_path=joinpath(@__DIR__, "sensitivity_results.csv"))
 
-end # module
+end 

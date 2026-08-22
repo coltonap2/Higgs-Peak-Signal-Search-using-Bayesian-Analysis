@@ -4,7 +4,7 @@ using CSV, DataFrames, StatsBase, BAT, Distributions, Measures, Plots, DensityIn
 using ..HiggsAnalysis3
 using ..ToyGeneration
 using Random
-Random.seed!(42)
+#Random.seed!(42)
 
 export fit_toys, get_log_bf
 
@@ -25,7 +25,6 @@ posterior_toys = PosteriorDensity(log_likelihood_density_for_toys, prior_for_toy
 samples_toys = bat_sample(
     posterior_toys,
     MCMCSampling(mcalg = MetropolisHastings(), nsteps = 10^5, nchains = 4)
-    # could also use 'mcalg = HamiltonianMonteCarlo'
 ).result
 
 bat_report(samples_toys)
@@ -358,7 +357,7 @@ function get_log_bf(current_toy)
 end
 
 # --- RUN THE LOOP ---
-num_toys = 10
+num_toys = 10 
 log_BF_results = []
 
 println("Starting fits for $num_toys toys...")
@@ -377,7 +376,7 @@ tick_positions = [collect(0:2:18)..., 20.5]
 # 2. Define the corresponding labels as strings
 tick_labels = [string.(0:2:18)..., "20+"]
 
-# After running your loop for 100 toys
+# After running loop for 100 toys
 final_graph = histogram(log_BF_results, 
     bins = 0:1:21, 
     xticks = (tick_positions, tick_labels),

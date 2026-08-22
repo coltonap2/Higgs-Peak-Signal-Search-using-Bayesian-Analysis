@@ -14,7 +14,7 @@ function generate_toy_experiment(signal, background, mu)
     return toy_counts
 end
 
-# Generate 10 toy experiments using fit window data
+# Generate 10 toy experiments using fit window data for visualization
 toys = [generate_toy_experiment(fit_signal, fit_background, best_fit.mu) for _ in 1:10]
 
 # Plot toy experiments

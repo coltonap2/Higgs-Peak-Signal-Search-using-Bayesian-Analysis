@@ -1,0 +1,2 @@
+fit_min,fit_max,n_bins_fit,bin_width_fit,full_min,full_max,n_bins_full,bin_width_full,luminosity_fb,signal_total_fit,background_total_fit,data_total_fit,signal_total_full,background_total_full,data_total_full,python_best_fit_mu,python_mu_error,python_significance
+110.0,140.0,15,2.0,80.0,250.0,34,5,10.0,6.0972344550536945,4.9498458951711655,19,6.193169780657627,94.50110614299774,147,2.198997990268927,0.6577689298081383,5.870237897662493
