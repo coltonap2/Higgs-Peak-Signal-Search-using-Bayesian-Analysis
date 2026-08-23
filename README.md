@@ -10,3 +10,5 @@ This project performs a rediscovery of then Higgs boson using data for proton-pr
 
 
 ## References
+ATLAS Collaboration (2020). ATLAS 13 TeV samples collection at least four leptons (electron or muon), for 2020 Open Data release. CERN Open Data Portal. DOI:10.7483/OPENDATA.ATLAS.2Y1T.TLGL
+
