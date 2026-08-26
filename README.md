@@ -10,6 +10,15 @@ The project then utilizes toy Monte Carlo (pseudo-)experiments to evaluate disco
 
 # 2. Data
 ## 2.1 LHC Run 2 Data
+The analysis uses publicly available proton-proton collision data from the ATLAS Collaboration through the CERN Open Data Portal. Both datasets were collected during the 2016 LHC data-taking period at a center-of-mass energy of 13 TeV and were released as part of the ATLAS 2020 Open Data release for educational use. The datasets contain both real collision data and corresponding simulated samples of Standard Model processes and selected Beyond the Standard Model signals.
+
+Two complementary datasets are used in this analysis:
+
+Four-lepton channel: The ATLAS 13 TeV samples collection at least four leptons (electron or muon) contains events preselected to include at least four electrons or muons. The collection consists of 111 files totaling approximately 930.5 MiB.
+Diphoton channel: The ATLAS 13 TeV samples collection Gamma-Gamma contains events preselected to include at least two photons. The collection consists of 10 files totaling approximately 3.5 GiB.
+
+Both collections apply a loose preselection at the object and event levels to reduce the number of events requiring further analysis. The selections described in Section 3 are subsequently applied to these preselected samples to isolate events consistent with the respective Higgs decay channels.
+
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
 
