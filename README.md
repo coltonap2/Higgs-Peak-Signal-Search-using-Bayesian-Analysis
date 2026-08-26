@@ -17,7 +17,7 @@ Two complementary datasets are used in this analysis:
 Four-lepton channel: The ATLAS 13 TeV samples collection at least four leptons (electron or muon) contains events preselected to include at least four electrons or muons. The collection consists of 111 files totaling approximately 930.5 MiB.
 Diphoton channel: The ATLAS 13 TeV samples collection Gamma-Gamma contains events preselected to include at least two photons. The collection consists of 10 files totaling approximately 3.5 GiB.
 
-Both collections apply a loose preselection at the object and event levels to reduce the number of events requiring further analysis. The selections described in Section 3 are subsequently applied to these preselected samples to isolate events consistent with the respective Higgs decay channels.
+Both collections apply a loose preselection at the object and event levels to reduce the number of events requiring further analysis. The selections described in Section 3 are subsequently applied to these preselected samples to isolate events consistent with the respective Higgs decay channels. Documentation released by CERN for the properties of each event and its identification in the raw code is provided in the references for both the four-lepton and diphoton data files. 
 
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
 The four-lepton analysis uses the ATLAS 13 TeV samples collection at least four leptons (electron or muon) from the 2020 Open Data release. The dataset contains both real collision data and simulated samples corresponding to Standard Model processes and Higgs signal events.
@@ -67,3 +67,4 @@ The real collision data provide the observed event sample, while the simulated s
 ATLAS Collaboration (2020). ATLAS 13 TeV samples collection at least four leptons (electron or muon), for 2020 Open Data release. CERN Open Data Portal. DOI:10.7483/OPENDATA.ATLAS.2Y1T.TLGL
 
 ATLAS Collaboration (2020). ATLAS 13 TeV samples collection Gamma-Gamma, for 2020 Open Data release. CERN Open Data Portal. DOI:10.7483/OPENDATA.ATLAS.B5BJ.3SGS
+
