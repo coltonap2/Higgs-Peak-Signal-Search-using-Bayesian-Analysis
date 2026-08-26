@@ -35,8 +35,43 @@ The real collision data provide the observed event sample, while the simulated s
 
 # 3. Event Selection
 ## 3.1 Physics Motivation
+This crucial step reduces noise from irrelevant detections by eliminating events that fail to meet the desired criteria.  The ultimate goal is to produce an invariant mass distribution, which can then be fit and analyzed for the desired Higgs spike.  The two detection channels each require a distinct set of cuts, as detailed below:
+
 ## 3.2 Four-Lepton Selection Criteria / Cuts
+The four-lepton channel is treated with a series of six cuts.  These cuts are motivated by the selection criteria laid out in the original Higgs Boson discovery paper, and are summarized as follows:
+
+i. Transverse momenta
+Electrons are identified as having transverse momenta $p_t > 7$ GeV and pseudorapidity $|\eta|< 2.47$ , while muons require a minimum transverse momentum of 5 GeV and pseudorapidity $|\eta| < 2.7$.  Leptons must meet additional thresholds based on the order of detection.  Specifically, the first must have a transverse momentum of $p_t > 20$ GeV, the second > 15 GeV, and the third > 10 GeV.
+ii. Charge/flavor
+Charge conservation requires that each event must contain two pairs of leptons of opposite sign (charge) and same flavor (OSSF).
+iii. Mass pairings
+The OSSF pair whose invariant mass is closest to that of the $Z$ boson (91.18 GeV) is chosen as the leading pair $Z_1$, with the other denoted as the subleading pair $Z_2$
+iv. Mass bounds
+The leading pair must have invariant mass between 50 and 106 GeV, the subleading pair between 12 and 115 GeV
+v. Resonance veto
+To eliminate similar events caused by $J/\psi$ and $\Upsiolon$ meson decays, we require that all OSSFs have invariant mass $m_ll > 5$ GeV
+vi. Lepton separation
+Finally, to remove any overlapping detections from closely-spaced leptons, we require a minimum separation of 0.1 for OSSF pairs and 0.2 for differently-flavored pairs.
+
 ## 3.3 Diphoton Selection Criteria / Cuts
+The noisier diphoton channel requires eight cuts, some of which are already flagged in the CERN dataset.  These cuts are made in accordance with the selection criteria from a newer 2022 paper for $\sqrt{s} = 13$ TeV:
+
+i. Photon trigger
+Selects all events already identified by CERN's photon trigger
+ii. Pseudorapidity
+Requires a pseudorapidity of $|\eta| < 2.37$ for each photon
+iii. Crack veto
+Excludes all photons whose with pseudorapidity within “crack” caused by detector’s geometry, namely the range $1.37 < |\eta| < 1.52$
+iv. Transverse momentum
+Requires minimum transverse momentum of $p_t > 40$ for leading photon, 30 GeV for subleading photon
+v. Tight photon identification
+Excludes all candidates that conflict with CERN’s photon identification criteria
+vi. Photon isolation
+Requires maximum track isolation of 5%, calorimetric isolation less than 6.5%
+vii. Transverse energy to invariant mass ratio
+Requires a minimum $E_T/m_\gamma\gamma$ ratio of 0.35 for leading, 0.25 for subleading photon
+viii. Diphoton mass
+Limits diphoton candidates to mass range between 105 and 160 GeV
 
 # 4. Event Reconstruction
 ## 4.1 Four-Lepton ("Golden") Channel
