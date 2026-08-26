@@ -19,7 +19,7 @@ The project then utilizes toy Monte Carlo (pseudo-)experiments to evaluate disco
 ## 3.3 Diphoton Selection Criteria / Cuts
 
 # 4. Event Reconstruction
-## 4.1 Four Lepton ("Golden") Channel
+## 4.1 Four-Lepton ("Golden") Channel
 ## 4.2 Diphoton Channel
 
 # 5. Statistical Model
