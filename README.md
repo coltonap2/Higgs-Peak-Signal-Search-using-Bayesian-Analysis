@@ -20,7 +20,18 @@ Diphoton channel: The ATLAS 13 TeV samples collection Gamma-Gamma contains event
 Both collections apply a loose preselection at the object and event levels to reduce the number of events requiring further analysis. The selections described in Section 3 are subsequently applied to these preselected samples to isolate events consistent with the respective Higgs decay channels.
 
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
+The four-lepton analysis uses the ATLAS 13 TeV samples collection at least four leptons (electron or muon) from the 2020 Open Data release. The dataset contains both real collision data and simulated samples corresponding to Standard Model processes and Higgs signal events.
+
+For the $H\rightarrow ZZ^*\rightarrow4\ell$ analysis, we use events containing combinations of electrons and muons and their associated kinematic and identification information. The primary quantities used in the analysis include each lepton's transverse momentum ($p_T$), pseudorapidity ($\eta$), azimuthal angle ($\phi$), energy ($E$), charge, lepton type, and identification and isolation variables.
+
+The real collision data provide the observed event sample, while simulated signal and background samples are used to model the expected contributions to the four-lepton invariant-mass distribution. The dataset has already undergone a loose ATLAS preselection requiring at least four leptons; additional event-selection criteria are applied in this analysis to isolate events consistent with the $H\rightarrow ZZ^*\rightarrow4\ell$ decay.
+
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
+The diphoton analysis uses the ATLAS 13 TeV samples collection Gamma-Gamma from the 2020 Open Data release. The dataset contains real collision data together with simulated samples of Standard Model processes and selected signal processes.
+
+For the $H\rightarrow\gamma\gamma$ analysis, we use events containing at least two photons and their associated kinematic and identification information. The primary quantities used in the analysis include photon transverse momentum ($p_T$), pseudorapidity ($\eta$), azimuthal angle ($\phi$), energy ($E$), and photon identification and isolation variables.
+
+The real collision data provide the observed event sample, while the simulated samples are used to characterize the expected signal and background contributions where applicable. The dataset has already undergone a loose ATLAS preselection requiring at least two photons; additional selection criteria are applied in this analysis to isolate events consistent with the $H\rightarrow\gamma\gamma$ decay.
 
 # 3. Event Selection
 ## 3.1 Physics Motivation
