@@ -10,17 +10,17 @@ The project then utilizes toy Monte Carlo (pseudo-)experiments to evaluate disco
 
 # 2. Data
 ## 2.1 LHC Run 2 Data
-## 2.2 Four-Lepton Dataset ($4\ell$)
-## 2.3 Diphoton Dataset ($\gamma\gamma$)
+## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
+## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
 
 # 3. Event Selection
 ## 3.1 Physics Motivation
-## 3.2 Selection Criteria / Cuts ($4\ell$)
-## 3.3 Selection Criteria / Cuts ($\gamma\gamma$)
+## 3.2 Four-Lepton Selection Criteria / Cuts
+## 3.3 Diphoton Selection Criteria / Cuts
 
 # 4. Event Reconstruction
-## 4.1 $H \rightarrow ZZ^* \rightarrow 4 \ell$ Four Lepton ("Golden") Channel
-## 4.2 $H \rightarrow \gamma\gamma$ Diphoton Channel
+## 4.1 Four Lepton ("Golden") Channel
+## 4.2 Diphoton Channel
 
 # 5. Statistical Model
 ## 5.1 Common Structure of the Model
