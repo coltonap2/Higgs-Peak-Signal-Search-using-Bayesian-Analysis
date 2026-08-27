@@ -199,6 +199,79 @@ Limits diphoton candidates to mass range between 105 and 160 GeV
 
 # 5. Statistical Model
 ## 5.1 Common Structure of the Model
+The statistical model provides the common framework used to analyze the selected invariant-mass distributions in both Higgs decay channels. While the four-lepton and diphoton channels have different event selections and signal and background models, both are reduced to the same statistical problem: comparing the observed number of events in each invariant-mass bin with the number expected from signal and background contributions.
+
+This section describes the statistical structure shared by both channels. The channel-specific construction of the signal and background models is described separately in Sections 5.2 and 5.3.
+
+Binned Signal-Plus-Background Model
+
+After event reconstruction, the invariant-mass distribution is divided into a set of bins. For each bin $i$, we define:
+
+$n_i$ as the observed number of events,
+$s_i$ as the expected signal contribution,
+$b_i$ as the expected background contribution.
+
+The expected number of events in each bin is modeled as
+
+$$ \lambda_i(\mu) = \mu s_i + b_i, $$
+
+where $\mu$ is the signal strength parameter.
+
+The signal strength scales the expected signal contribution while leaving the background contribution unchanged. This provides a common parameterization for testing different signal hypotheses:
+
+$$ \mu = 0 $$
+
+represents the background-only hypothesis, while
+
+$$ \mu = 1 $$
+
+represents the nominal signal-plus-background hypothesis.
+
+The same parameterization is used for both decay channels. The values of $s_i$ and $b_i$, however, are determined independently for the four-lepton and diphoton analyses and are described in Sections 5.2 and 5.3.
+
+Poisson Likelihood
+
+Because $n_i$ represents a count of observed events in each bin, the number of events in a bin is modeled using a Poisson distribution. For a single bin,
+
+$$ P(n_i|\mu) = \frac{\lambda_i(\mu)^{n_i}e^{-\lambda_i(\mu)}}{n_i!}. $$
+
+Assuming the bins are independent, the likelihood for the complete invariant-mass distribution is
+
+$$ \mathcal{L}(\mu) = \prod_i P(n_i|\mu) = \prod_i \frac{\lambda_i(\mu)^{n_i}e^{-\lambda_i(\mu)}}{n_i!}. $$
+
+Substituting the signal-plus-background model gives
+
+$$ \mathcal{L}(\mu) = \prod_i \frac{(\mu s_i+b_i)^{n_i} e^{-(\mu s_i+b_i)}}{n_i!}. $$
+
+This likelihood is the central statistical object passed to the Bayesian inference procedure in Section 6.
+
+Separating the Statistical Model from the Physics Inputs
+
+An important feature of the framework is the separation between the common statistical structure and the channel-specific physics inputs.
+
+The statistical model requires:
+
+| Quantity | Meaning                               | Source                            |
+| :------- | :------------------------------------ | :-------------------------------- |
+| $n_i$    | Observed number of events in bin $i$  | Selected collision data           |
+| $s_i$    | Expected signal events in bin $i$     | Channel-specific signal model     |
+| $b_i$    | Expected background events in bin $i$ | Channel-specific background model |
+| $\mu$    | Signal strength                       | Parameter being inferred          |
+
+The procedure for constructing $n_i$, $s_i$, and $b_i$ can differ between analyses without changing the underlying likelihood. This means that the statistical framework can be reused for another decay channel or dataset by replacing the corresponding physics inputs while retaining the same signal-plus-background structure.
+
+For replication, the key interface between the physics analysis and statistical model is therefore the set of binned quantities $(n_i,s_i,b_i)$. Once these quantities have been constructed for a given analysis, the common likelihood can be applied without modifying its fundamental structure.
+
+Model Workflow
+
+The common statistical workflow can be summarized as:
+
+$$ \text{Invariant-Mass Distribution} \rightarrow \text{Binning} \rightarrow (n_i,s_i,b_i) \rightarrow \lambda_i(\mu)=\mu s_i+b_i \rightarrow \mathcal{L}(\mu). $$
+
+The four-lepton and diphoton analyses follow this same statistical structure. Their differences arise in how the signal and background contributions are obtained from their respective datasets, which is described in the following sections.
+
+The Bayesian prior, posterior distribution, and implementation of this likelihood in BAT.jl are intentionally treated separately in Section 6.
+
 ## 5.2 Four-Lepton Statistical Model
 ## 5.3 Diphoton Statistical Model
 
