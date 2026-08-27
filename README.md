@@ -62,13 +62,15 @@ For the $H \rightarrow ZZ^* \rightarrow 4\ell$ analysis, we work with events con
 
 The primary variables used in the selection and reconstruction are:
 
-Variable	Meaning	Role in the analysis
-lep_pt_1 – lep_pt_4	Transverse momentum (pT) of each lepton	Used for the lepton transverse-momentum requirements
-lep_eta_1 – lep_eta_4	Pseudorapidity (η) of each lepton	Used for the lepton acceptance requirements
-lep_phi_1 – lep_phi_4	Azimuthal angle (ϕ) of each lepton	Used to calculate angular separation $\Delta R$
-lep_E_1 – lep_E_4	Energy (E) of each lepton	Used to reconstruct dilepton and four-lepton invariant masses
-lep_charge_1 – lep_charge_4	Electric charge of each lepton	Used to identify opposite-sign lepton pairs
-lep_type_1 – lep_type_4	Lepton flavor/type	Used to identify same-flavor lepton pairs and construct OSSF combinations
+| Variable                        | Meaning                                   | Role in the analysis                                                      |
+| :------------------------------ | :---------------------------------------- | :------------------------------------------------------------------------ |
+| `lep_pt_1` – `lep_pt_4`         | Transverse momentum (`pT`) of each lepton | Used for the lepton transverse-momentum requirements                      |
+| `lep_eta_1` – `lep_eta_4`       | Pseudorapidity (`η`) of each lepton       | Used for the lepton acceptance requirements                               |
+| `lep_phi_1` – `lep_phi_4`       | Azimuthal angle (`ϕ`) of each lepton      | Used to calculate angular separation $\Delta R$                           |
+| `lep_E_1` – `lep_E_4`           | Energy (`E`) of each lepton               | Used to reconstruct dilepton and four-lepton invariant masses             |
+| `lep_charge_1` – `lep_charge_4` | Electric charge of each lepton            | Used to identify opposite-sign lepton pairs                               |
+| `lep_type_1` – `lep_type_4`     | Lepton flavor/type                        | Used to identify same-flavor lepton pairs and construct OSSF combinations |
+
 
 The lepton transverse momentum and pseudorapidity are used to determine whether each reconstructed lepton falls within the required kinematic acceptance. The charge and type variables are then used to construct opposite-sign same-flavor (OSSF) lepton pairs.
 
@@ -129,60 +131,64 @@ The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection fr
 
 Understanding the Event Data
 
-For the $H \rightarrow \gamma\gamma$ analysis, we select events containing at least two reconstructed photons. The relevant photon-level information includes their kinematic properties together with identification and isolation variables.
+For the $H \rightarrow \gamma\gamma$ analysis, we work with events containing at least two reconstructed photons. The dataset provides the kinematic, identification, isolation, and trigger information needed to apply the diphoton selection criteria.
 
-The primary quantities used in this analysis include:
-| Variable                        | Meaning                                          | Role in the analysis                                   |
-| :------------------------------ | :----------------------------------------------- | :----------------------------------------------------- |
-| `photon_pt`                     | Transverse momentum (`pT`)                       | Used for photon momentum requirements                  |
-| `photon_eta`                    | Pseudorapidity (`η`)                             | Describes the photon's direction                       |
-| `photon_phi`                    | Azimuthal angle (`ϕ`)                            | Used to determine angular relationships                |
-| `photon_E`                      | Energy (`E`)                                     | Used when reconstructing the invariant mass            |
-| Photon identification variables | Photon reconstruction/identification information | Used to select suitable photon candidates              |
-| Photon isolation variables      | Activity surrounding the photon                  | Used to reduce contamination from non-isolated objects |
+The primary variables used in the selection and reconstruction are:
+
+| Variable                                   | Meaning                                                     | Role in the analysis                                                                      |
+| :----------------------------------------- | :---------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| `trigP_1`, `trigP_2`                       | Photon trigger flags                                        | Used to select events that pass the relevant photon trigger                               |
+| `photon_pt_1`, `photon_pt_2`               | Transverse momentum (`pT`) of each photon                   | Used for the leading and subleading photon momentum requirements                          |
+| `photon_eta_1`, `photon_eta_2`             | Pseudorapidity (`η`) of each photon                         | Used for detector acceptance and the crack-veto requirement                               |
+| `photon_phi_1`, `photon_phi_2`             | Azimuthal angle (`ϕ`) of each photon                        | Used with the photon kinematics to reconstruct the diphoton system                        |
+| `photon_E_1`, `photon_E_2`                 | Energy (`E`) of each photon                                 | Used to reconstruct the diphoton invariant mass                                           |
+| `photon_isTightID_1`, `photon_isTightID_2` | Tight photon identification flags                           | Used to reject photon candidates that do not satisfy the required identification criteria |
+| `photon_ptcone30_1`, `photon_ptcone30_2`   | Track-based isolation within a cone of $\Delta R=0.3$       | Used to apply the track-isolation requirement                                             |
+| `photon_etcone20_1`, `photon_etcone20_2`   | Calorimeter-based isolation within a cone of $\Delta R=0.2$ | Used to apply the calorimeter-isolation requirement                                       |
+| `m_gg`                                     | Diphoton invariant mass                                     | Used for the diphoton mass requirement and as the primary analysis observable             |
 
 
-As with the four-lepton dataset, the released variables provide the information required to move from the preselected events to the final analysis sample.
+The photon transverse momentum and pseudorapidity determine whether each photon satisfies the detector acceptance and kinematic requirements. The trigger and tight-identification flags provide event and object-level information that has already been evaluated by the ATLAS data-processing framework.
 
-The photon transverse momentum and angular variables are used to impose additional selection requirements, while the photon energies and directions are used to reconstruct the invariant mass of the diphoton system.
+The isolation variables characterize additional activity surrounding each photon. These are used to suppress photon candidates associated with significant nearby activity and to implement the isolation requirements described in Section 3.3.
 
-For two photons with four-momenta $p_1$ and $p_2$, the diphoton invariant mass is obtained from
+The diphoton invariant mass is obtained from the four-momenta of the two photons:
 
 $$
-m_{\gamma\gamma}^2 = (p_1+p_2)^2.
+m_{\gamma\gamma}^2 = (p_{\gamma_1}+p_{\gamma_2})^2.
 $$
 
-The resulting $m_{\gamma\gamma}$ distribution provides the observable in which a Higgs boson contribution can appear as an excess above the smoothly varying background.
+The resulting $m_{\gamma\gamma}$ distribution is the primary observable used to search for a localized Higgs contribution above the smoothly varying diphoton background.
 
 From the Released Sample to the Analysis Sample
 
-The ATLAS $\gamma\gamma$ collection has already undergone a loose preselection requiring at least two photons. We then apply additional analysis-level requirements to isolate events consistent with the $H \rightarrow \gamma\gamma$ decay.
+The ATLAS $\gamma\gamma$ collection has already undergone a loose preselection requiring at least two photons. We then apply the additional selection criteria described in Section 3.3: Diphoton Selection Criteria / Cuts.
 
-The workflow is therefore:
+The analysis proceeds through trigger selection, photon acceptance and identification, isolation, transverse-momentum requirements, and invariant-mass selection:
 
 $$
 \text{ATLAS }\gamma\gamma\text{ sample}
 \rightarrow
+\text{Trigger selection}
+\rightarrow
 \text{Photon selection}
 \rightarrow
-\text{Event selection}
+\text{Isolation}
 \rightarrow
-\text{Diphoton system}
+\text{Kinematic selection}
 \rightarrow
 m_{\gamma\gamma}.
 $$
 
-The selected collision data are then used to construct the observed diphoton invariant-mass distribution. Simulated samples provide information about the expected signal and background contributions where applicable.
+The selected collision data are then used to construct the observed diphoton invariant-mass distribution. Simulated samples provide information about the expected signal and background contributions used in the subsequent statistical analysis.
 
-As with the four-lepton channel, the goal is not simply to obtain a final histogram, but to establish a sequence of reproducible transformations from the public ATLAS dataset to the observable used in the statistical analysis.
-
-The specific selection criteria and their implementation are described in Section 3: Event Selection.
+The purpose of this dataset walkthrough is therefore to connect the variables provided by the ATLAS Open Data release to the selection criteria that operate on them. The complete implementation of those criteria is described in Section 3.3.
 
 Dataset Documentation
 
-When reproducing or modifying this analysis, the official ATLAS documentation should be used to verify the meaning, units, and representation of the released event variables. The documentation for both the four-lepton and diphoton collections is provided in the References.
+When reproducing or modifying the analysis, the official ATLAS documentation should be used to verify the meaning, units, and representation of the released event variables. The documentation for the four-lepton and diphoton collections is provided in the References.
 
-This is particularly important when adapting the workflow to another ATLAS Open Data release or another analysis channel, since the available variables and their definitions may differ between datasets.
+This is particularly important when adapting the workflow to another ATLAS Open Data release or analysis channel, since the available variables and their definitions may differ between datasets.
 
 
 # 3. Event Selection
