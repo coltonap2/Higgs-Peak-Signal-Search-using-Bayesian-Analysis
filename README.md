@@ -135,17 +135,20 @@ For the $H \rightarrow \gamma\gamma$ analysis, we work with events containing at
 
 The primary variables used in the selection and reconstruction are:
 
-| Variable                                   | Meaning                                                     | Role in the analysis                                                                      |
-| :----------------------------------------- | :---------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
-| `trigP_1`, `trigP_2`                       | Photon trigger flags                                        | Used to select events that pass the relevant photon trigger                               |
-| `photon_pt_1`, `photon_pt_2`               | Transverse momentum (`pT`) of each photon                   | Used for the leading and subleading photon momentum requirements                          |
-| `photon_eta_1`, `photon_eta_2`             | Pseudorapidity (`η`) of each photon                         | Used for detector acceptance and the crack-veto requirement                               |
-| `photon_phi_1`, `photon_phi_2`             | Azimuthal angle (`ϕ`) of each photon                        | Used with the photon kinematics to reconstruct the diphoton system                        |
-| `photon_E_1`, `photon_E_2`                 | Energy (`E`) of each photon                                 | Used to reconstruct the diphoton invariant mass                                           |
-| `photon_isTightID_1`, `photon_isTightID_2` | Tight photon identification flags                           | Used to reject photon candidates that do not satisfy the required identification criteria |
-| `photon_ptcone30_1`, `photon_ptcone30_2`   | Track-based isolation within a cone of $\Delta R=0.3$       | Used to apply the track-isolation requirement                                             |
-| `photon_etcone20_1`, `photon_etcone20_2`   | Calorimeter-based isolation within a cone of $\Delta R=0.2$ | Used to apply the calorimeter-isolation requirement                                       |
-| `m_gg`                                     | Diphoton invariant mass                                     | Used for the diphoton mass requirement and as the primary analysis observable             |
+| Variable                                   | Meaning                                   | Role in the analysis                                                                                            |
+| :----------------------------------------- | :---------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| `dataset`                                  | Dataset classification                    | Used to select real collision data (`data`)                                                                     |
+| `trigP_1`, `trigP_2`                       | Photon trigger flags                      | Used to select events passing the photon trigger requirement                                                    |
+| `photon_pt_1`, `photon_pt_2`               | Transverse momentum (`pT`) of each photon | Used for photon kinematic requirements, isolation, and the $p_T/m_{\gamma\gamma}$ requirements                  |
+| `photon_eta_1`, `photon_eta_2`             | Pseudorapidity (`η`) of each photon       | Used for detector acceptance and the crack-veto requirements                                                    |
+| `photon_phi_1`, `photon_phi_2`             | Azimuthal angle (`ϕ`) of each photon      | Used to reconstruct the photons' momentum components and $m_{\gamma\gamma}$                                     |
+| `photon_E_1`, `photon_E_2`                 | Energy (`E`) of each photon               | Used to reconstruct $m_{\gamma\gamma}$                                                                          |
+| `photon_isTightID_1`, `photon_isTightID_2` | Tight photon identification flags         | Used to select photons satisfying the ATLAS tight identification requirement                                    |
+| `photon_ptcone30_1`, `photon_ptcone30_2`   | Track-based isolation variable            | Used to require `ptcone30 / pT < 0.05`                                                                          |
+| `photon_etcone20_1`, `photon_etcone20_2`   | Calorimeter-based isolation variable      | Used to require `etcone20 / pT < 0.065`                                                                         |
+| `m_gg`                                     | Diphoton invariant mass                   | Reconstructed from the photon four-momenta and used for the $p_T/m_{\gamma\gamma}$ and mass-window requirements |
+| `event_weight`                             | Event weight                              | Used to calculate the final weighted event yield                                                                |
+
 
 
 The photon transverse momentum and pseudorapidity determine whether each photon satisfies the detector acceptance and kinematic requirements. The trigger and tight-identification flags provide event and object-level information that has already been evaluated by the ATLAS data-processing framework.
