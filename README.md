@@ -131,11 +131,65 @@ The real collision data provide the observed distribution, while the simulated s
 The specific selection criteria and their implementation are described in Section 3: Event Selection.
 
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
-The diphoton analysis uses the ATLAS 13 TeV samples collection Gamma-Gamma from the 2020 Open Data release. The dataset also contains real collision data together with Monte Carlo simulated samples of Standard Model processes and selected signal processes.
+The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection from the 2020 Open Data release. Like the four-lepton collection, it contains real collision data together with Monte Carlo simulated samples representing relevant background and signal processes.
 
-For the $H\rightarrow\gamma\gamma$ analysis, we use events containing at least two photons and their associated kinematic and identification information. The primary quantities used in the analysis include photon transverse momentum ($p_T$), pseudorapidity ($\eta$), azimuthal angle ($\phi$), energy ($E$), and photon identification and isolation variables.
+Understanding the Event Data
 
-The real collision data provide the observed event sample, while the simulated samples are used to characterize the expected signal and background contributions where applicable. The dataset has already undergone a loose ATLAS preselection requiring at least two photons; additional selection criteria are applied in this analysis to isolate events consistent with the $H\rightarrow\gamma\gamma$ decay.
+For the $H \rightarrow \gamma\gamma$ analysis, we select events containing at least two reconstructed photons. The relevant photon-level information includes their kinematic properties together with identification and isolation variables.
+
+The primary quantities used in this analysis include:
+| Variable                        | Meaning                                          | Role in the analysis                                   |
+| :------------------------------ | :----------------------------------------------- | :----------------------------------------------------- |
+| `photon_pt`                     | Transverse momentum (`pT`)                       | Used for photon momentum requirements                  |
+| `photon_eta`                    | Pseudorapidity (`η`)                             | Describes the photon's direction                       |
+| `photon_phi`                    | Azimuthal angle (`ϕ`)                            | Used to determine angular relationships                |
+| `photon_E`                      | Energy (`E`)                                     | Used when reconstructing the invariant mass            |
+| Photon identification variables | Photon reconstruction/identification information | Used to select suitable photon candidates              |
+| Photon isolation variables      | Activity surrounding the photon                  | Used to reduce contamination from non-isolated objects |
+
+
+As with the four-lepton dataset, the released variables provide the information required to move from the preselected events to the final analysis sample.
+
+The photon transverse momentum and angular variables are used to impose additional selection requirements, while the photon energies and directions are used to reconstruct the invariant mass of the diphoton system.
+
+For two photons with four-momenta $p_1$ and $p_2$, the diphoton invariant mass is obtained from
+
+$$
+m_{\gamma\gamma}^2 = (p_1+p_2)^2.
+$$
+
+The resulting $m_{\gamma\gamma}$ distribution provides the observable in which a Higgs boson contribution can appear as an excess above the smoothly varying background.
+
+From the Released Sample to the Analysis Sample
+
+The ATLAS $\gamma\gamma$ collection has already undergone a loose preselection requiring at least two photons. We then apply additional analysis-level requirements to isolate events consistent with the $H \rightarrow \gamma\gamma$ decay.
+
+The workflow is therefore:
+
+$$
+\text{ATLAS }\gamma\gamma\text{ sample}
+\rightarrow
+\text{Photon selection}
+\rightarrow
+\text{Event selection}
+\rightarrow
+\text{Diphoton system}
+\rightarrow
+m_{\gamma\gamma}.
+$$
+
+The selected collision data are then used to construct the observed diphoton invariant-mass distribution. Simulated samples provide information about the expected signal and background contributions where applicable.
+
+As with the four-lepton channel, the goal is not simply to obtain a final histogram, but to establish a sequence of reproducible transformations from the public ATLAS dataset to the observable used in the statistical analysis.
+
+The specific selection criteria and their implementation are described in Section 3: Event Selection.
+
+Dataset Documentation
+
+When reproducing or modifying this analysis, the official ATLAS documentation should be used to verify the meaning, units, and representation of the released event variables. The documentation for both the four-lepton and diphoton collections is provided in the References.
+
+This is particularly important when adapting the workflow to another ATLAS Open Data release or another analysis channel, since the available variables and their definitions may differ between datasets.
+
 
 # 3. Event Selection
 ## 3.1 Physics Motivation
