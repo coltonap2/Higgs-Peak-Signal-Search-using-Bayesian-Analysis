@@ -275,7 +275,34 @@ The four-lepton and diphoton analyses follow this same statistical structure. Th
 The Bayesian prior, posterior distribution, and implementation of this likelihood in BAT.jl are intentionally treated separately in Section 6.
 
 ## 4.2 Four-Lepton Statistical Model
+The four-lepton statistical model applies the common signal-plus-background framework to the reconstructed four-lepton invariant-mass distribution, $m_{4\ell}$. After the event selection and reconstruction described in Sections 3.2 and 4.1, the selected events are divided into bins of $m_{4\ell}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
+
+For each $m_{4\ell}$ bin, the expected event count is
+
+$$ \lambda_i(\mu)=\mu s_i+b_i. $$
+
+Here, $s_i$ represents the expected Higgs contribution to the four-lepton distribution and $b_i$ represents the expected non-Higgs background contribution. The signal strength $\mu$ scales the expected Higgs contribution while the background remains fixed. These quantities are then supplied to the common Poisson likelihood defined in Section 5.1.
+
+The four-lepton model can therefore be summarized as
+
+$$ m_{4\ell} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \rightarrow \lambda_i(\mu) \rightarrow \mathcal{L}(\mu). $$
+
+The specific construction of the four-lepton signal and background components is determined from the corresponding ATLAS collision and simulated samples. These channel-specific inputs are kept separate from the common likelihood so that the statistical framework can be reused with a different channel or dataset.
+
 ## 4.3 Diphoton Statistical Model
+The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and reconstruction described in Sections 3.3 and 4.2, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
+
+For each $m_{\gamma\gamma}$ bin, the expected event count is
+
+$$ \lambda_i(\mu)=\mu s_i+b_i. $$
+
+Here, $s_i$ represents the expected Higgs contribution to the diphoton distribution and $b_i$ represents the expected background contribution. As in the four-lepton channel, $\mu$ controls the strength of the signal contribution, allowing the same statistical model to be applied without modification.
+
+The diphoton model can therefore be summarized as
+
+$$ m_{\gamma\gamma} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \rightarrow \lambda_i(\mu) \rightarrow \mathcal{L}(\mu). $$
+
+The primary difference from the four-lepton model is the channel-specific construction of the signal and background distributions used to obtain $s_i$ and $b_i$. Once these inputs are obtained, they are passed to the same likelihood framework established in Section 5.1.
 
 # 5. Bayesian Inference
 ## 5.1 Prior on Signal Strength
