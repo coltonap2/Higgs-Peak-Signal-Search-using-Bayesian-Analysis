@@ -24,174 +24,116 @@ Future development will extend the framework to signal-strength limit setting an
 
 # 2. Data
 ## 2.1 LHC Run 2 Data
-The analysis begins with publicly available proton-proton collision data from the ATLAS Collaboration through the CERN Open Data Portal. The datasets used here were collected during the 2016 LHC data-taking period at a center-of-mass energy of $13$ TeV and were released as part of the ATLAS 2020 Open Data release for educational use.
+The analysis begins with publicly available proton-proton collision data from the ATLAS Collaboration through the CERN Open Data Portal. The datasets used in this analysis were collected during the 2016 LHC data-taking period at a center-of-mass energy of $13$ TeV and were released as part of the ATLAS 2020 Open Data release for educational use.
 
-The Open Data release provides both real collision data and corresponding simulated Monte Carlo samples. The collision data represent the events observed by the ATLAS detector, while the simulated samples provide modeled examples of Standard Model background processes and selected signal processes. Keeping these two types of samples separate is important later in the analysis, where the observed data are compared with expected signal and background contributions.
+The Open Data release provides both real collision data and simulated Monte Carlo samples. The collision data contain events recorded by the ATLAS detector, while the simulated samples contain modeled events representing Standard Model processes and selected signal processes. These samples are distinguished in the released datasets through the dataset variable and are used differently in later stages of the analysis.
 
 This analysis uses two complementary ATLAS data collections:
 
-Four-lepton channel: The ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
-Diphoton channel: The ATLAS 13 TeV $\gamma\gamma$ samples collection provides events preselected to contain at least two photons. The collection consists of 10 files, totaling approximately 3.5 GiB.
+Four-lepton channel: The [ATLAS 13 TeV samples collection containing at least four leptons (electron or muon)] provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
+Diphoton channel: The [ATLAS 13 TeV $\gamma\gamma$ samples collection] provides events preselected to contain at least two photons. The collection consists of 10 files, totaling approximately 3.5 GiB.
 
-These collections are not yet the final analysis samples. Instead, they provide the starting point for the analysis workflow. Each collection has already undergone a loose ATLAS preselection at the object and event levels, reducing the number of events that need to be considered while retaining events potentially relevant to the corresponding Higgs decay channel.
+The released collections therefore serve as the starting point for the analysis rather than the final datasets used for inference. The ATLAS Open Data samples have already undergone a loose preselection designed to identify events containing the relevant reconstructed objects. The analysis then reads these released event-level variables and applies the additional processing described in Sections 3 and 4.
 
-The workflow used in this repository can therefore be viewed as:
+The overall relationship between the data and subsequent analysis stages is:
 
-$$
-\text{ATLAS Open Data}
-\rightarrow
-\text{Dataset Preparation}
-\rightarrow
-\text{Analysis Selection}
-\rightarrow
-\text{Reconstructed Observable}
-\rightarrow
-\text{Statistical Analysis}.
-$$
+$$ \text{ATLAS Open Data} \rightarrow \text{Data Preparation} \rightarrow \text{Event Selection} \rightarrow \text{Event Reconstruction} \rightarrow \text{Statistical Analysis}. $$
 
-The following sections describe the two datasets in more detail, including the structure of their event-level variables and how those variables are used to construct the analysis samples.
+The remainder of this section describes how the two released datasets are organized and identifies the event-level variables used by the analysis. The specific selection criteria and reconstruction procedures are described separately in Sections 3 and 4.
 
-Official ATLAS documentation for the datasets and their event-level properties is provided in the References. These resources are particularly useful when reproducing the analysis or adapting the workflow to a different dataset. 
+Official ATLAS documentation for the datasets and their event-level properties is provided in the References. These resources should be consulted when reproducing the analysis or adapting the workflow to another ATLAS Open Data sample.
 
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
-The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) from the 2020 Open Data release. The collection contains both real collision data and simulated Monte Carlo samples representing relevant Standard Model backgrounds and Higgs signal events.
+The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) from the 2020 Open Data release. The collection contains both real collision data and simulated Monte Carlo samples representing relevant background and signal processes.
 
 Understanding the Event Data
 
-For the $H \rightarrow ZZ^* \rightarrow 4\ell$ analysis, we work with events containing at least four reconstructed electrons or muons. The released dataset provides the kinematic, charge, flavor, and identification information needed to select the four leptons and reconstruct their invariant masses.
+Each event in the released four-lepton collection contains information about the reconstructed leptons in that event. The dataset provides separate variables for up to four leptons, with the suffix _1 through _4 identifying the corresponding lepton.
 
-The primary variables used in the selection and reconstruction are:
+For example, lep_pt_1 refers to the transverse momentum of the first lepton, while lep_pt_4 refers to that of the fourth. This naming convention allows the same quantity to be accessed for each reconstructed lepton.
 
-| Variable                        | Meaning                                   | Role in the analysis                                                      |
-| :------------------------------ | :---------------------------------------- | :------------------------------------------------------------------------ |
-| `lep_pt_1` – `lep_pt_4`         | Transverse momentum (`pT`) of each lepton | Used for the lepton transverse-momentum requirements                      |
-| `lep_eta_1` – `lep_eta_4`       | Pseudorapidity (`η`) of each lepton       | Used for the lepton acceptance requirements                               |
-| `lep_phi_1` – `lep_phi_4`       | Azimuthal angle (`ϕ`) of each lepton      | Used to calculate angular separation $\Delta R$                           |
-| `lep_E_1` – `lep_E_4`           | Energy (`E`) of each lepton               | Used to reconstruct dilepton and four-lepton invariant masses             |
-| `lep_charge_1` – `lep_charge_4` | Electric charge of each lepton            | Used to identify opposite-sign lepton pairs                               |
-| `lep_type_1` – `lep_type_4`     | Lepton flavor/type                        | Used to identify same-flavor lepton pairs and construct OSSF combinations |
+The primary lepton-level variables used by this analysis are:
 
+| Variable                        | Meaning                     | Purpose                                                           |
+| :------------------------------ | :-------------------------- | :---------------------------------------------------------------- |
+| `lep_pt_1` – `lep_pt_4`         | Transverse momentum ($p_T$) | Provides the transverse momentum of each reconstructed lepton     |
+| `lep_eta_1` – `lep_eta_4`       | Pseudorapidity ($\eta$)     | Provides the direction of each lepton relative to the beam axis   |
+| `lep_phi_1` – `lep_phi_4`       | Azimuthal angle ($\phi$)    | Provides the angular position of each lepton around the beam axis |
+| `lep_E_1` – `lep_E_4`           | Energy ($E$)                | Provides the energy of each reconstructed lepton                  |
+| `lep_charge_1` – `lep_charge_4` | Electric charge             | Identifies the charge associated with each lepton                 |
+| `lep_type_1` – `lep_type_4`     | Lepton type                 | Distinguishes electrons from muons                                |
 
-The lepton transverse momentum and pseudorapidity are used to determine whether each reconstructed lepton falls within the required kinematic acceptance. The charge and type variables are then used to construct opposite-sign same-flavor (OSSF) lepton pairs.
+These variables provide the basic kinematic and identification information required by the later stages of the analysis. The individual quantities are not themselves the final analysis observable; rather, they provide the information from which the event-selection and reconstruction procedures in Sections 3 and 4 operate.
 
-The angular variables are used to calculate the separation between two leptons:
+Dataset Organization
 
-$$
-\Delta R =
-\sqrt{(\Delta\eta)^2+(\Delta\phi)^2}.
-$$
+The released files contain both observed and simulated events. For the observed-data analysis, events are identified using the dataset classification provided in the file. Simulated samples are retained separately so that they can be used to characterize the expected signal and background contributions in the statistical analysis.
 
-This allows the analysis to reject events in which reconstructed leptons are too closely separated.
+The analysis code reads the released CSV data into a Julia DataFrame. The event-level columns can then be accessed directly by their dataset identifiers. For example:
 
-The energy and momentum information is also used to calculate invariant masses. For a system of particles with total four-momentum $P$, the invariant mass is
+df.lep_pt_1
+df.lep_eta_1
+df.lep_charge_1
 
-$$
-m^2 = P^2.
-$$
+This provides a direct connection between the variables documented by ATLAS and the quantities used by the analysis code.
 
-For example, the invariant mass of a dilepton pair is obtained from
+The units of the released variables should also be checked before analysis. In the workflow used here, lepton transverse momenta and energies are converted from MeV to GeV during data preparation where necessary. The corresponding conversion is performed in the analysis code before the variables are used downstream.
 
-$$
-m_{\ell\ell}^2 = (p_{\ell_1}+p_{\ell_2})^2,
-$$
-
-while the four-lepton invariant mass is
-
-$$
-m_{4\ell}^2 =
-(p_{\ell_1}+p_{\ell_2}+p_{\ell_3}+p_{\ell_4})^2.
-$$
-
-These reconstructed masses are subsequently used to identify the two $Z$-boson candidates and construct the final $m_{4\ell}$ distribution.
-
-From the Released Sample to the Analysis Sample
-
-The ATLAS collection has already undergone a loose preselection requiring at least four leptons. We then apply the additional selection criteria described in Section 3.2: Four-Lepton Selection Criteria / Cuts.
-
-The analysis proceeds from the released event variables through lepton selection, OSSF pairing, mass requirements, and angular separation requirements before reconstructing the four-lepton invariant mass:
-
-$$
-\text{ATLAS }4\ell\text{ sample}
-\rightarrow
-\text{Lepton selection}
-\rightarrow
-\text{OSSF pairing}
-\rightarrow
-\text{Mass selection}
-\rightarrow
-\Delta R\text{ selection}
-\rightarrow
-m_{4\ell}.
-$$
-
-The resulting $m_{4\ell}$ distribution is the primary observable used for the Higgs search. The collision data provide the observed distribution, while the simulated samples provide the signal and background information used later in the statistical model.
+The specific criteria applied to these variables are described in Section 3.2, while the construction of the four-lepton observable is described in Section 4.1.
 
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
 The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection from the 2020 Open Data release. Like the four-lepton collection, it contains real collision data together with Monte Carlo simulated samples representing relevant background and signal processes.
 
 Understanding the Event Data
 
-For the $H \rightarrow \gamma\gamma$ analysis, we work with events containing at least two reconstructed photons. The dataset provides the kinematic, identification, isolation, and trigger information needed to apply the diphoton selection criteria.
+Each event in the released diphoton collection contains information about the reconstructed photons in that event. Variables associated with the two photons are identified using the suffixes _1 and _2. For example, photon_pt_1 and photon_pt_2 contain the transverse momenta of the two reconstructed photons.
 
-The primary variables used in the selection and reconstruction are:
+The primary variables used by this analysis are:
 
-| Variable                                   | Meaning                                   | Role in the analysis                                                                                            |
-| :----------------------------------------- | :---------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `dataset`                                  | Dataset classification                    | Used to select real collision data (`data`)                                                                     |
-| `trigP_1`, `trigP_2`                       | Photon trigger flags                      | Used to select events passing the photon trigger requirement                                                    |
-| `photon_pt_1`, `photon_pt_2`               | Transverse momentum (`pT`) of each photon | Used for photon kinematic requirements, isolation, and the $p_T/m_{\gamma\gamma}$ requirements                  |
-| `photon_eta_1`, `photon_eta_2`             | Pseudorapidity (`η`) of each photon       | Used for detector acceptance and the crack-veto requirements                                                    |
-| `photon_phi_1`, `photon_phi_2`             | Azimuthal angle (`ϕ`) of each photon      | Used to reconstruct the photons' momentum components and $m_{\gamma\gamma}$                                     |
-| `photon_E_1`, `photon_E_2`                 | Energy (`E`) of each photon               | Used to reconstruct $m_{\gamma\gamma}$                                                                          |
-| `photon_isTightID_1`, `photon_isTightID_2` | Tight photon identification flags         | Used to select photons satisfying the ATLAS tight identification requirement                                    |
-| `photon_ptcone30_1`, `photon_ptcone30_2`   | Track-based isolation variable            | Used to require `ptcone30 / pT < 0.05`                                                                          |
-| `photon_etcone20_1`, `photon_etcone20_2`   | Calorimeter-based isolation variable      | Used to require `etcone20 / pT < 0.065`                                                                         |
-| `m_gg`                                     | Diphoton invariant mass                   | Reconstructed from the photon four-momenta and used for the $p_T/m_{\gamma\gamma}$ and mass-window requirements |
-| `event_weight`                             | Event weight                              | Used to calculate the final weighted event yield                                                                |
+| Variable                                   | Meaning                              | Purpose                                                                      |
+| :----------------------------------------- | :----------------------------------- | :--------------------------------------------------------------------------- |
+| `dataset`                                  | Dataset classification               | Identifies the type of event sample, including real collision data (`data`)  |
+| `trigP_1`, `trigP_2`                       | Photon trigger flags                 | Provide the photon-trigger information recorded in the dataset               |
+| `photon_pt_1`, `photon_pt_2`               | Transverse momentum ($p_T$)          | Provides the transverse momentum of each reconstructed photon                |
+| `photon_eta_1`, `photon_eta_2`             | Pseudorapidity ($\eta$)              | Provides the direction of each photon relative to the beam axis              |
+| `photon_phi_1`, `photon_phi_2`             | Azimuthal angle ($\phi$)             | Provides the angular position of each photon around the beam axis            |
+| `photon_E_1`, `photon_E_2`                 | Energy ($E$)                         | Provides the energy of each reconstructed photon                             |
+| `photon_isTightID_1`, `photon_isTightID_2` | Tight photon identification flags    | Provide the ATLAS photon-identification information                          |
+| `photon_ptcone30_1`, `photon_ptcone30_2`   | Track-based isolation variable       | Provides the track activity measured around each photon                      |
+| `photon_etcone20_1`, `photon_etcone20_2`   | Calorimeter-based isolation variable | Provides the calorimeter activity measured around each photon                |
+| `event_weight`                             | Event weight                         | Provides the weight associated with an event for weighted-yield calculations |
+| `m_gg`                                     | Diphoton invariant mass              | Dataset variable corresponding to the diphoton invariant mass                |
 
+These variables provide the event-level information used by the subsequent selection and reconstruction stages. Their specific application is intentionally described in later sections rather than duplicated here.
 
+Dataset Organization
 
-The photon transverse momentum and pseudorapidity determine whether each photon satisfies the detector acceptance and kinematic requirements. The trigger and tight-identification flags provide event and object-level information that has already been evaluated by the ATLAS data-processing framework.
+As with the four-lepton collection, the diphoton files contain both observed and simulated events. The dataset variable distinguishes the different samples, allowing the observed collision data to be separated from simulated signal and background samples.
 
-The isolation variables characterize additional activity surrounding each photon. These are used to suppress photon candidates associated with significant nearby activity and to implement the isolation requirements described in Section 3.3.
+The analysis code reads the released CSV file into a Julia DataFrame, allowing individual event-level variables to be accessed directly. For example:
 
-The diphoton invariant mass is obtained from the four-momenta of the two photons:
+df.photon_pt_1
+df.photon_eta_1
+df.photon_isTightID_1
+df.photon_ptcone30_1
 
-$$
-m_{\gamma\gamma}^2 = (p_{\gamma_1}+p_{\gamma_2})^2.
-$$
+The photon transverse momenta and energies are converted from MeV to GeV during data preparation before they are used in the subsequent analysis.
 
-The resulting $m_{\gamma\gamma}$ distribution is the primary observable used to search for a localized Higgs contribution above the smoothly varying diphoton background.
+Several variables in the released dataset describe detector-level identification and isolation information. In particular, photon_isTightID, photon_ptcone30, and photon_etcone20 provide information that is later used when applying the diphoton event-selection criteria.
 
-From the Released Sample to the Analysis Sample
+The specific requirements applied to these variables are described in Section 3.3, while the construction of the diphoton observable is described in Section 4.2.
 
-The ATLAS $\gamma\gamma$ collection has already undergone a loose preselection requiring at least two photons. We then apply the additional selection criteria described in Section 3.3: Diphoton Selection Criteria / Cuts.
+Working with the Released Data
 
-The analysis proceeds through trigger selection, photon acceptance and identification, isolation, transverse-momentum requirements, and invariant-mass selection:
+For reproducibility, the important distinction is between variables provided by ATLAS and quantities derived by the analysis. The released dataset supplies the underlying event-level measurements and flags, while later analysis code combines these quantities to produce the selected event sample and reconstructed observables.
 
-$$
-\text{ATLAS }\gamma\gamma\text{ sample}
-\rightarrow
-\text{Trigger selection}
-\rightarrow
-\text{Photon selection}
-\rightarrow
-\text{Isolation}
-\rightarrow
-\text{Kinematic selection}
-\rightarrow
-m_{\gamma\gamma}.
-$$
-
-The selected collision data are then used to construct the observed diphoton invariant-mass distribution. Simulated samples provide information about the expected signal and background contributions used in the subsequent statistical analysis.
-
-The purpose of this dataset walkthrough is therefore to connect the variables provided by the ATLAS Open Data release to the selection criteria that operate on them. The complete implementation of those criteria is described in Section 3.3.
+This separation allows the same workflow to be adapted to another compatible ATLAS dataset: the dataset-specific variables can be mapped to the corresponding analysis inputs, while the selection, reconstruction, and statistical procedures can be applied independently.
 
 Dataset Documentation
 
-When reproducing or modifying the analysis, the official ATLAS documentation should be used to verify the meaning, units, and representation of the released event variables. The documentation for the four-lepton and diphoton collections is provided in the References.
+The official ATLAS documentation should be used to verify the meaning, units, and representation of the variables in the released files. The documentation for both the four-lepton and diphoton collections is provided in the References.
 
-This is particularly important when adapting the workflow to another ATLAS Open Data release or analysis channel, since the available variables and their definitions may differ between datasets.
+This documentation is particularly important when reproducing or modifying the analysis because variable names, units, available samples, and event-level definitions may differ between ATLAS Open Data releases.
 
 
 # 3. Event Selection
