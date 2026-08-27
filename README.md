@@ -134,64 +134,28 @@ This crucial step reduces noise from irrelevant detections by eliminating events
 ## 3.2 Four-Lepton Selection Criteria / Cuts
 The four-lepton channel is treated with a series of six cuts.  These cuts are motivated by the selection criteria laid out in the original Higgs Boson discovery paper, and are summarized as follows:
 
-i. Transverse momenta
-
-Electrons are identified as having transverse momenta $p_t > 7$ GeV and pseudorapidity $|\eta|< 2.47$ , while muons require a minimum transverse momentum of 5 GeV and pseudorapidity $|\eta| < 2.7$.  Leptons must meet additional thresholds based on the order of detection.  Specifically, the first must have a transverse momentum of $p_t > 20$ GeV, the second > 15 GeV, and the third > 10 GeV.
-
-ii. Charge/flavor
-
-Charge conservation requires that each event must contain two pairs of leptons of opposite sign (charge) and same flavor (OSSF).
-
-iii. Mass pairings
-
-The OSSF pair whose invariant mass is closest to that of the $Z$ boson (91.18 GeV) is chosen as the leading pair $Z_1$, with the other denoted as the subleading pair $Z_2$
-
-iv. Mass bounds
-
-The leading pair must have invariant mass between 50 and 106 GeV, the subleading pair between 12 and 115 GeV
-
-v. Resonance veto
-
-To eliminate similar events caused by $J/\psi$ and $\Upsilon$ meson decays, we require that all OSSFs have invariant mass $m_ll > 5$ GeV
-
-vi. Lepton separation
-
-Finally, to remove any overlapping detections from closely-spaced leptons, we require a minimum separation of 0.1 for OSSF pairs and 0.2 for differently-flavored pairs.
+| # | Cut | Criteria |
+|---|-----|----------|
+| 1 | **Transverse momenta** | Electrons: \(p_T > 7\) GeV, \(\lvert\eta\rvert < 2.47\). Muons: \(p_T > 5\) GeV, \(\lvert\eta\rvert < 2.7\). Ordered leptons must additionally satisfy: 1st \(p_T > 20\) GeV, 2nd \(p_T > 15\) GeV, 3rd \(p_T > 10\) GeV |
+| 2 | **Charge/flavor** | Each event must contain two pairs of opposite-sign, same-flavor (OSSF) leptons |
+| 3 | **Mass pairings** | The OSSF pair with invariant mass closest to the Z boson (91.18 GeV) is chosen as the leading pair (Z1); the other pair is the subleading pair (Z2) |
+| 4 | **Mass bounds** | Leading pair: \(50 < m_{ll} < 106\) GeV. Subleading pair: \(12 < m_{ll} < 115\) GeV |
+| 5 | **Resonance veto** | All OSSF pairs must have \(m_{ll} > 5\) GeV (removes J/ψ and Υ meson decay contamination) |
+| 6 | **Lepton separation** | Minimum separation of 0.1 for OSSF pairs, 0.2 for differently-flavored pairs (removes overlapping detections) |
 
 ## 3.3 Diphoton Selection Criteria / Cuts
 The noisier diphoton channel requires eight cuts, some of which are already flagged in the CERN dataset.  These cuts are made in accordance with the selection criteria from a newer 2022 paper for $\sqrt{s} = 13$ TeV:
 
-i. Photon trigger
-
-Selects all events already identified by CERN's photon trigger
-
-ii. Pseudorapidity
-
-Requires a pseudorapidity of $|\eta| < 2.37$ for each photon
-
-iii. Crack veto
-
-Excludes all photons whose with pseudorapidity within “crack” caused by detector’s geometry, namely the range $1.37 < |\eta| < 1.52$
-
-iv. Transverse momentum
-
-Requires minimum transverse momentum of $p_t > 40$ for leading photon, 30 GeV for subleading photon
-
-v. Tight photon identification
-
-Excludes all candidates that conflict with CERN’s photon identification criteria
-
-vi. Photon isolation
-
-Requires maximum track isolation of 5%, calorimetric isolation less than 6.5%
-
-vii. Transverse energy to invariant mass ratio
-
-Requires a minimum $E_T/m_\gamma\gamma$ ratio of 0.35 for leading, 0.25 for subleading photon
-
-viii. Diphoton mass
-
-Limits diphoton candidates to mass range between 105 and 160 GeV
+| # | Cut | Criteria |
+|---|-----|----------|
+| 1 | **Photon trigger** | Selects all events already identified by CERN's photon trigger |
+| 2 | **Pseudorapidity** | \(\lvert\eta\rvert < 2.37\) for each photon |
+| 3 | **Crack veto** | Excludes photons with pseudorapidity in the detector's geometric "crack": \(1.37 < \lvert\eta\rvert < 1.52\) |
+| 4 | **Transverse momentum** | Leading photon: \(p_T > 40\) GeV. Subleading photon: \(p_T > 30\) GeV |
+| 5 | **Tight photon identification** | Excludes candidates that fail CERN's photon identification criteria |
+| 6 | **Photon isolation** | Maximum track isolation of 5%, calorimetric isolation < 6.5% |
+| 7 | **E_T / m_γγ ratio** | Minimum ratio of 0.35 for leading photon, 0.25 for subleading photon |
+| 8 | **Diphoton mass** | Diphoton candidates restricted to \(105 < m_{\gamma\gamma} < 160\) GeV |
 
 # 4. Statistical Model
 ## 4.1 Common Structure of the Model
