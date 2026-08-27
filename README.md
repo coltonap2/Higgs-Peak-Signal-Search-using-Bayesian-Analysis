@@ -69,11 +69,7 @@ Dataset Organization
 
 The released files contain both observed and simulated events. For the observed-data analysis, events are identified using the dataset classification provided in the file. Simulated samples are retained separately so that they can be used to characterize the expected signal and background contributions in the statistical analysis.
 
-The analysis code reads the released CSV data into a Julia DataFrame. The event-level columns can then be accessed directly by their dataset identifiers. For example:
-
-df.lep_pt_1
-df.lep_eta_1
-df.lep_charge_1
+The analysis code reads the released CSV data into a Julia DataFrame. The event-level columns can then be accessed directly by their dataset identifiers. For example: df.lep_pt_1, df.lep_eta_1, and df.lep_charge_1.
 
 This provides a direct connection between the variables documented by ATLAS and the quantities used by the analysis code.
 
@@ -110,12 +106,7 @@ Dataset Organization
 
 As with the four-lepton collection, the diphoton files contain both observed and simulated events. The dataset variable distinguishes the different samples, allowing the observed collision data to be separated from simulated signal and background samples.
 
-The analysis code reads the released CSV file into a Julia DataFrame, allowing individual event-level variables to be accessed directly. For example:
-
-df.photon_pt_1
-df.photon_eta_1
-df.photon_isTightID_1
-df.photon_ptcone30_1
+The analysis code reads the released CSV file into a Julia DataFrame, allowing individual event-level variables to be accessed directly. For example: df.photon_pt_1, df.photon_eta_1, df.photon_isTightID_1, and df.photon_ptcone30_1.
 
 The photon transverse momenta and energies are converted from MeV to GeV during data preparation before they are used in the subsequent analysis.
 
