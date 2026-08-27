@@ -236,13 +236,13 @@ P(n_i|\mu) = \frac{\lambda_i(\mu)^{n_i}e^{-\lambda_i(\mu)}}{n_i!}.
 Assuming the bins are independent, the likelihood for the complete invariant-mass distribution is
 
 ```math
-\mathscr{L}(\mu) = \prod_i P(n_i|\mu) = \prod_i \frac{\lambda_i(\mu)^{n_i}e^{-\lambda_i(\mu)}}{n_i!}.
+𝓛(\mu) = \prod_i P(n_i|\mu) = \prod_i \frac{\lambda_i(\mu)^{n_i}e^{-\lambda_i(\mu)}}{n_i!}.
 ```
 
 Substituting the signal-plus-background model gives
 
 ```math
-\mathscr{L}(\mu) = \prod_i \frac{(\mu s_i+b_i)^{n_i} e^{-(\mu s_i+b_i)}}{n_i!}.
+𝓛(\mu) = \prod_i \frac{(\mu s_i+b_i)^{n_i} e^{-(\mu s_i+b_i)}}{n_i!}.
 ```
 
 This likelihood is the central statistical object passed to the Bayesian inference procedure in Section 6.
