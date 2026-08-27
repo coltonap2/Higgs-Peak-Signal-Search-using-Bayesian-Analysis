@@ -2,11 +2,25 @@
 ## A statistical analysis for the $H \rightarrow ZZ^* \rightarrow 4 \ell$ and $H \rightarrow \gamma \gamma$ Decay Channel
 
 ## 1. Overview
-This project investigates the rediscovery of the Higgs boson using 13 TeV proton-proton collision data from the LHC, available through the CERN Open Data Portal. Using Run 2 data collected from 2015–2018, we analyze two Higgs decay channels: the four-lepton ($H\rightarrow ZZ^*\rightarrow4\ell$) “golden channel” and the diphoton ($H\rightarrow\gamma\gamma$) channel.
+This project develops a reproducible statistical analysis workflow for particle-physics discovery searches, demonstrated through the rediscovery of the Higgs boson using publicly available 13 TeV proton-proton collision data from the CERN Open Data Portal. The analysis uses Run 2 data collected from 2015–2018 and considers two Higgs decay channels: the four-lepton ($H \rightarrow ZZ^* \rightarrow 4\ell$) “golden channel” and the diphoton ($H \rightarrow \gamma\gamma$) channel.
 
-We impose physics-motivated and detector-level criteria for selection to isolate events that are consistent with each decay channel and reconstruct their corresponding invariant-mass distributions. The cut data are modeled with a signal-plus-background Poisson likelihood, which is combined with a prior on the signal strength parameter to perform Bayesian inference using BAT.jl.
+The workflow proceeds from publicly available collision data through event selection, invariant-mass reconstruction, statistical modeling, and hypothesis testing. Physics-motivated and detector-level selection criteria are applied to isolate events consistent with each decay channel, after which the resulting invariant-mass distributions are used to construct signal and background models.
 
-The project then utilizes toy Monte Carlo (pseudo-)experiments to evaluate discovery sensitivity by comparing the background-only (no Higgs) hypothesis with pseudo-data containing an injected Higgs signal. The goal is to determine whether the analysis can provide sufficient evidence to establish the presence of the Higgs boson with $5\sigma$ significance against the background-only hypothesis. Future progress will extend this statistical framework to perform limit setting on the signal strength.
+At the core of the analysis is a signal-plus-background statistical model in which the expected number of events in each mass bin is parameterized by the signal strength $\mu$ and the corresponding signal and background contributions:
+
+$$
+\lambda_i(\mu) = \mu s_i + b_i,
+$$
+
+where $\lambda_i(\mu)$ is the expected number of events in bin $i$, $s_i$ is the expected signal contribution, and $b_i$ is the expected background contribution. The resulting Poisson likelihood is combined with a prior on the signal strength parameter to perform Bayesian inference using BAT.jl.
+
+The same statistical structure is applied across the two decay channels, while the channel-specific event selections and signal and background models are defined from the corresponding data. This separation between the common statistical model and channel-specific physics inputs allows the analysis workflow to be reproduced and adapted to other datasets or search channels.
+
+To evaluate discovery sensitivity, the framework uses toy Monte Carlo (pseudo-)experiments to generate datasets under both the background-only ($\mu=0$) and signal-plus-background ($\mu>0$) hypotheses. These pseudo-experiments are then analyzed using the same inference procedure applied to the observed data, allowing the expected sensitivity of the analysis to be studied and compared with the evidence required for a $5\sigma$ discovery.
+
+The repository is organized as a reproducible workflow rather than solely as a record of the final result. Each stage of the analysis—from data preparation and event selection to statistical modeling and pseudo-experiment generation—is documented so that the analysis can be reproduced, modified, and extended. Although the Higgs boson serves as the primary physics case study, the underlying statistical workflow is intended to provide a foundation that can be adapted to other counting-based particle-physics searches and datasets.
+
+Future development will extend the framework to signal-strength limit setting and further generalize the statistical and modeling components for use beyond the Higgs rediscovery analysis.
 
 # 2. Data
 ## 2.1 LHC Run 2 Data
