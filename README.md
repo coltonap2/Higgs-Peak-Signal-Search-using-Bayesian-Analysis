@@ -193,12 +193,8 @@ viii. Diphoton mass
 
 Limits diphoton candidates to mass range between 105 and 160 GeV
 
-# 4. Event Reconstruction
-## 4.1 Four-Lepton ("Golden") Channel
-## 4.2 Diphoton Channel
-
-# 5. Statistical Model
-## 5.1 Common Structure of the Model
+# 4. Statistical Model
+## 4.1 Common Structure of the Model
 The statistical model provides the common framework used to analyze the selected invariant-mass distributions in both Higgs decay channels. While the four-lepton and diphoton channels have different event selections and signal and background models, both are reduced to the same statistical problem: comparing the observed number of events in each invariant-mass bin with the number expected from signal and background contributions.
 
 This section describes the statistical structure shared by both channels. The channel-specific construction of the signal and background models is described separately in Sections 5.2 and 5.3.
@@ -272,24 +268,24 @@ The four-lepton and diphoton analyses follow this same statistical structure. Th
 
 The Bayesian prior, posterior distribution, and implementation of this likelihood in BAT.jl are intentionally treated separately in Section 6.
 
-## 5.2 Four-Lepton Statistical Model
-## 5.3 Diphoton Statistical Model
+## 4.2 Four-Lepton Statistical Model
+## 4.3 Diphoton Statistical Model
 
-# 6. Bayesian Inference
-## 6.1 Prior on Signal Strength
-## 6.2 Posterior Distribution
-## 6.3 BAT.jl Implementation
-## 6.4 Four-Lepton Results
-## 6.5 Diphoton Results
+# 5. Bayesian Inference
+## 5.1 Prior on Signal Strength
+## 5.2 Posterior Distribution
+## 5.3 BAT.jl Implementation
+## 5.4 Four-Lepton Results
+## 5.5 Diphoton Results
 
-# 7. Discovery Sensitivity
-## 7.1 Toy Monte Carlo Experiments
-## 7.2 Background-Only Hypthesis
-## 7.3 Signal-Plus-Background Hypothesis
-## 7.4 Discovery Test Statistic
-## 7.5 $5\sigma$ Sensitivity
-## 7.6 Four-Lepton Results
-## 7.7 Diphoton Results
+# 6. Discovery Sensitivity
+## 6.1 Toy Monte Carlo Experiments
+## 6.2 Background-Only Hypthesis
+## 6.3 Signal-Plus-Background Hypothesis
+## 6.4 Discovery Test Statistic
+## 6.5 $5\sigma$ Sensitivity
+## 6.6 Four-Lepton Results
+## 6.7 Diphoton Results
 
 ## References
 ATLAS Collaboration (2020). ATLAS 13 TeV samples collection at least four leptons (electron or muon), for 2020 Open Data release. CERN Open Data Portal. DOI:10.7483/OPENDATA.ATLAS.2Y1T.TLGL
