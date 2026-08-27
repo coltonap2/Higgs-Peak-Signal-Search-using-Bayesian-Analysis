@@ -68,16 +68,18 @@ The released event data contain information about the individual leptons that ca
 
 The primary lepton-level quantities used in this analysis include:
 
-Variable	Meaning	Role in the analysis
-lep_pt	Transverse momentum $p_T$	Used for lepton momentum requirements
-lep_eta	Pseudorapidity $\eta$	Describes the lepton's direction relative to the beam axis
-lep_phi	Azimuthal angle $\phi$	Used to determine angular separations between leptons
-lep_E	Energy $E$	Used when reconstructing the invariant mass
-lep_charge	Electric charge	Used to identify opposite-sign lepton pairs
-lep_type	Lepton type	Distinguishes electrons from muons
-lep_isTightID	Identification requirement	Used to select well-identified leptons
-lep_ptcone30	Track-based isolation variable	Used to characterize nearby activity around a lepton
-lep_etcone20	Calorimeter-based isolation variable	Used to characterize nearby energy deposition
+| Variable        | Meaning                              | Role in the analysis                                       |
+| :-------------- | :----------------------------------- | :--------------------------------------------------------- |
+| `lep_pt`        | Transverse momentum $p_T$            | Used for lepton momentum requirements                      |
+| `lep_eta`       | Pseudorapidity $\eta$                | Describes the lepton's direction relative to the beam axis |
+| `lep_phi`       | Azimuthal angle $\phi$               | Used to determine angular separations between leptons      |
+| `lep_E`         | Energy $E$                           | Used when reconstructing the invariant mass                |
+| `lep_charge`    | Electric charge                      | Used to identify opposite-sign lepton pairs                |
+| `lep_type`      | Lepton type                          | Distinguishes electrons from muons                         |
+| `lep_isTightID` | Identification requirement           | Used to select well-identified leptons                     |
+| `lep_ptcone30`  | Track-based isolation variable       | Used to characterize nearby activity around a lepton       |
+| `lep_etcone20`  | Calorimeter-based isolation variable | Used to characterize nearby energy deposition              |
+
 
 The notation used in the released data is also reflected in the code. For example, lep_pt_1 through lep_pt_4 refer to the transverse momenta of the four leptons assigned to an event, while the corresponding _eta, _phi, and _E variables provide their other kinematic properties.
 
