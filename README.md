@@ -24,21 +24,109 @@ Future development will extend the framework to signal-strength limit setting an
 
 # 2. Data
 ## 2.1 LHC Run 2 Data
-The analysis uses publicly available proton-proton collision data from the ATLAS Collaboration through the CERN Open Data Portal. Both datasets were collected during the 2016 LHC data-taking period at a center-of-mass energy of 13 TeV and were released as part of the ATLAS 2020 Open Data release for educational use. The datasets contain both real collision data and corresponding simulated samples of Standard Model processes and selected Beyond the Standard Model signals.
+The analysis begins with publicly available proton-proton collision data from the ATLAS Collaboration through the CERN Open Data Portal. The datasets used here were collected during the 2016 LHC data-taking period at a center-of-mass energy of $13$ TeV and were released as part of the ATLAS 2020 Open Data release for educational use.
 
-Two complementary datasets are used in this analysis:
+The Open Data release provides both real collision data and corresponding simulated Monte Carlo samples. The collision data represent the events observed by the ATLAS detector, while the simulated samples provide modeled examples of Standard Model background processes and selected signal processes. Keeping these two types of samples separate is important later in the analysis, where the observed data are compared with expected signal and background contributions.
 
-Four-lepton channel: The ATLAS 13 TeV samples collection at least four leptons (electron or muon) contains events preselected to include at least four electrons or muons. The collection consists of 111 files totaling approximately 930.5 MiB.
-Diphoton channel: The ATLAS 13 TeV samples collection Gamma-Gamma contains events preselected to include at least two photons. The collection consists of 10 files totaling approximately 3.5 GiB.
+This analysis uses two complementary ATLAS data collections:
 
-Both collections apply a loose preselection at the object and event levels to reduce the number of events requiring further analysis. The selections described in Section 3 are subsequently applied to these preselected samples to isolate events consistent with the respective Higgs decay channels. Documentation released by CERN for the properties of each event and its identification in the raw code is provided in the references for both the four-lepton and diphoton data files. 
+Four-lepton channel: The ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
+Diphoton channel: The ATLAS 13 TeV $\gamma\gamma$ samples collection provides events preselected to contain at least two photons. The collection consists of 10 files, totaling approximately 3.5 GiB.
+
+These collections are not yet the final analysis samples. Instead, they provide the starting point for the analysis workflow. Each collection has already undergone a loose ATLAS preselection at the object and event levels, reducing the number of events that need to be considered while retaining events potentially relevant to the corresponding Higgs decay channel.
+
+The workflow used in this repository can therefore be viewed as:
+
+$$
+\text{ATLAS Open Data}
+\rightarrow
+\text{Dataset Preparation}
+\rightarrow
+\text{Analysis Selection}
+\rightarrow
+\text{Reconstructed Observable}
+\rightarrow
+\text{Statistical Analysis}.
+$$
+
+The following sections describe the two datasets in more detail, including the structure of their event-level variables and how those variables are used to construct the analysis samples.
+
+Official ATLAS documentation for the datasets and their event-level properties is provided in the References. These resources are particularly useful when reproducing the analysis or adapting the workflow to a different dataset. 
 
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
-The four-lepton analysis uses the ATLAS 13 TeV samples collection at least four leptons (electron or muon) from the 2020 Open Data release. The dataset contains both real collision data and simulated Monte Carlo samples consistent with Standard Model processes and Higgs signal events.
+The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) from the 2020 Open Data release. The collection contains both real collision data and simulated Monte Carlo samples representing relevant Standard Model backgrounds and Higgs signal events.
 
-For the $H\rightarrow ZZ^*\rightarrow4\ell$ analysis, we use events containing combinations of electrons and muons and their associated kinematic and identification information. The primary quantities used in the analysis include each lepton's transverse momentum ($p_T$), pseudorapidity ($\eta$), azimuthal angle ($\phi$), energy ($E$), charge, lepton type, and identification and isolation variables.
+Understanding the Event Data
 
-The real collision data provide the observed event sample, while simulated signal and background samples are used to model the expected contributions to the four-lepton invariant-mass distribution. The dataset has already undergone a loose ATLAS preselection requiring at least four leptons; additional event-selection criteria are applied in this analysis to isolate events consistent with the $H\rightarrow ZZ^*\rightarrow4\ell$ decay.
+For the $H \rightarrow ZZ^* \rightarrow 4\ell$ analysis, we are interested in events containing four reconstructed leptons. These leptons can be electrons or muons, giving final states such as
+
+$$
+4e,\qquad 4\mu,\qquad 2e2\mu.
+$$
+
+The released event data contain information about the individual leptons that can be used to determine whether an event satisfies the additional analysis selections and to reconstruct the four-lepton invariant mass.
+
+The primary lepton-level quantities used in this analysis include:
+
+Variable	Meaning	Role in the analysis
+lep_pt	Transverse momentum $p_T$	Used for lepton momentum requirements
+lep_eta	Pseudorapidity $\eta$	Describes the lepton's direction relative to the beam axis
+lep_phi	Azimuthal angle $\phi$	Used to determine angular separations between leptons
+lep_E	Energy $E$	Used when reconstructing the invariant mass
+lep_charge	Electric charge	Used to identify opposite-sign lepton pairs
+lep_type	Lepton type	Distinguishes electrons from muons
+lep_isTightID	Identification requirement	Used to select well-identified leptons
+lep_ptcone30	Track-based isolation variable	Used to characterize nearby activity around a lepton
+lep_etcone20	Calorimeter-based isolation variable	Used to characterize nearby energy deposition
+
+The notation used in the released data is also reflected in the code. For example, lep_pt_1 through lep_pt_4 refer to the transverse momenta of the four leptons assigned to an event, while the corresponding _eta, _phi, and _E variables provide their other kinematic properties.
+
+The transverse momentum is the component of a particle's momentum perpendicular to the proton-proton beam axis:
+
+$$
+p_T = \sqrt{p_x^2+p_y^2}.
+$$
+
+The pseudorapidity is defined as
+
+$$
+\eta = -\ln\left(\tan\frac{\theta}{2}\right),
+$$
+
+where $\theta$ is the polar angle measured relative to the beam axis. The azimuthal angle $\phi$ describes the direction of the particle in the plane transverse to the beam.
+
+These quantities are sufficient to construct several useful observables. In particular, the angular separation between two leptons is calculated using
+
+$$
+\Delta R =
+\sqrt{(\Delta\eta)^2+(\Delta\phi)^2}.
+$$
+
+This quantity is later used as part of the event-selection procedure.
+
+From the Released Sample to the Analysis Sample
+
+The ATLAS collection has already been preselected to contain at least four leptons. We then apply additional analysis-level requirements to the events. These requirements use the kinematic, identification, isolation, and angular information provided in the dataset.
+
+The resulting workflow is:
+
+$$
+\text{ATLAS 4$\ell$ sample}
+\rightarrow
+\text{Lepton selection}
+\rightarrow
+\text{Event selection}
+\rightarrow
+\text{Four-lepton system}
+\rightarrow
+m_{4\ell}.
+$$
+
+After the selection requirements are applied, the four selected leptons are combined to reconstruct the invariant mass of the four-lepton system. This distribution is the primary observable used to search for the Higgs signal.
+
+The real collision data provide the observed distribution, while the simulated signal and background samples provide the components needed to construct the statistical model.
+
+The specific selection criteria and their implementation are described in Section 3: Event Selection.
 
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
 The diphoton analysis uses the ATLAS 13 TeV samples collection Gamma-Gamma from the 2020 Open Data release. The dataset also contains real collision data together with Monte Carlo simulated samples of Standard Model processes and selected signal processes.
