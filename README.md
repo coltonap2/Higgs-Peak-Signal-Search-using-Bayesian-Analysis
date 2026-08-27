@@ -58,77 +58,71 @@ The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at 
 
 Understanding the Event Data
 
-For the $H \rightarrow ZZ^* \rightarrow 4\ell$ analysis, we are interested in events containing four reconstructed leptons. These leptons can be electrons or muons, giving final states such as
+For the $H \rightarrow ZZ^* \rightarrow 4\ell$ analysis, we work with events containing at least four reconstructed electrons or muons. The released dataset provides the kinematic, charge, flavor, and identification information needed to select the four leptons and reconstruct their invariant masses.
 
-$$
-4e,\qquad 4\mu,\qquad 2e2\mu.
-$$
+The primary variables used in the selection and reconstruction are:
 
-The released event data contain information about the individual leptons that can be used to determine whether an event satisfies the additional analysis selections and to reconstruct the four-lepton invariant mass.
+Variable	Meaning	Role in the analysis
+lep_pt_1 – lep_pt_4	Transverse momentum (pT) of each lepton	Used for the lepton transverse-momentum requirements
+lep_eta_1 – lep_eta_4	Pseudorapidity (η) of each lepton	Used for the lepton acceptance requirements
+lep_phi_1 – lep_phi_4	Azimuthal angle (ϕ) of each lepton	Used to calculate angular separation $\Delta R$
+lep_E_1 – lep_E_4	Energy (E) of each lepton	Used to reconstruct dilepton and four-lepton invariant masses
+lep_charge_1 – lep_charge_4	Electric charge of each lepton	Used to identify opposite-sign lepton pairs
+lep_type_1 – lep_type_4	Lepton flavor/type	Used to identify same-flavor lepton pairs and construct OSSF combinations
 
-The primary lepton-level quantities used in this analysis include:
+The lepton transverse momentum and pseudorapidity are used to determine whether each reconstructed lepton falls within the required kinematic acceptance. The charge and type variables are then used to construct opposite-sign same-flavor (OSSF) lepton pairs.
 
-| Variable        | Meaning                              | Role in the analysis                                       |
-| :-------------- | :----------------------------------- | :--------------------------------------------------------- |
-| `lep_pt`        | Transverse momentum $p_T$            | Used for lepton momentum requirements                      |
-| `lep_eta`       | Pseudorapidity $\eta$                | Describes the lepton's direction relative to the beam axis |
-| `lep_phi`       | Azimuthal angle $\phi$               | Used to determine angular separations between leptons      |
-| `lep_E`         | Energy $E$                           | Used when reconstructing the invariant mass                |
-| `lep_charge`    | Electric charge                      | Used to identify opposite-sign lepton pairs                |
-| `lep_type`      | Lepton type                          | Distinguishes electrons from muons                         |
-| `lep_isTightID` | Identification requirement           | Used to select well-identified leptons                     |
-| `lep_ptcone30`  | Track-based isolation variable       | Used to characterize nearby activity around a lepton       |
-| `lep_etcone20`  | Calorimeter-based isolation variable | Used to characterize nearby energy deposition              |
-
-
-The notation used in the released data is also reflected in the code. For example, lep_pt_1 through lep_pt_4 refer to the transverse momenta of the four leptons assigned to an event, while the corresponding _eta, _phi, and _E variables provide their other kinematic properties.
-
-The transverse momentum is the component of a particle's momentum perpendicular to the proton-proton beam axis:
-
-$$
-p_T = \sqrt{p_x^2+p_y^2}.
-$$
-
-The pseudorapidity is defined as
-
-$$
-\eta = -\ln\left(\tan\frac{\theta}{2}\right),
-$$
-
-where $\theta$ is the polar angle measured relative to the beam axis. The azimuthal angle $\phi$ describes the direction of the particle in the plane transverse to the beam.
-
-These quantities are sufficient to construct several useful observables. In particular, the angular separation between two leptons is calculated using
+The angular variables are used to calculate the separation between two leptons:
 
 $$
 \Delta R =
 \sqrt{(\Delta\eta)^2+(\Delta\phi)^2}.
 $$
 
-This quantity is later used as part of the event-selection procedure.
+This allows the analysis to reject events in which reconstructed leptons are too closely separated.
+
+The energy and momentum information is also used to calculate invariant masses. For a system of particles with total four-momentum $P$, the invariant mass is
+
+$$
+m^2 = P^2.
+$$
+
+For example, the invariant mass of a dilepton pair is obtained from
+
+$$
+m_{\ell\ell}^2 = (p_{\ell_1}+p_{\ell_2})^2,
+$$
+
+while the four-lepton invariant mass is
+
+$$
+m_{4\ell}^2 =
+(p_{\ell_1}+p_{\ell_2}+p_{\ell_3}+p_{\ell_4})^2.
+$$
+
+These reconstructed masses are subsequently used to identify the two $Z$-boson candidates and construct the final $m_{4\ell}$ distribution.
 
 From the Released Sample to the Analysis Sample
 
-The ATLAS collection has already been preselected to contain at least four leptons. We then apply additional analysis-level requirements to the events. These requirements use the kinematic, identification, isolation, and angular information provided in the dataset.
+The ATLAS collection has already undergone a loose preselection requiring at least four leptons. We then apply the additional selection criteria described in Section 3.2: Four-Lepton Selection Criteria / Cuts.
 
-The resulting workflow is:
+The analysis proceeds from the released event variables through lepton selection, OSSF pairing, mass requirements, and angular separation requirements before reconstructing the four-lepton invariant mass:
 
 $$
-\text{ATLAS 4$\ell$ sample}
+\text{ATLAS }4\ell\text{ sample}
 \rightarrow
 \text{Lepton selection}
 \rightarrow
-\text{Event selection}
+\text{OSSF pairing}
 \rightarrow
-\text{Four-lepton system}
+\text{Mass selection}
+\rightarrow
+\Delta R\text{ selection}
 \rightarrow
 m_{4\ell}.
 $$
 
-After the selection requirements are applied, the four selected leptons are combined to reconstruct the invariant mass of the four-lepton system. This distribution is the primary observable used to search for the Higgs signal.
-
-The real collision data provide the observed distribution, while the simulated signal and background samples provide the components needed to construct the statistical model.
-
-The specific selection criteria and their implementation are described in Section 3: Event Selection.
+The resulting $m_{4\ell}$ distribution is the primary observable used for the Higgs search. The collision data provide the observed distribution, while the simulated samples provide the signal and background information used later in the statistical model.
 
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
 The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection from the 2020 Open Data release. Like the four-lepton collection, it contains real collision data together with Monte Carlo simulated samples representing relevant background and signal processes.
