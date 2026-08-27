@@ -251,7 +251,7 @@ The four-lepton model can therefore be summarized as
 
 $$ m_{4\ell} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \rightarrow \lambda_i(\mu) \rightarrow \mathcal{L}(\mu). $$
 
-The specific construction of the four-lepton signal and background components is determined from the corresponding ATLAS collision and simulated samples. These channel-specific inputs are kept separate from the common likelihood so that the statistical framework can be reused with a different channel or dataset.
+The values for $s_i$ and $b_i$ are obtained from the Monte Carlo simulated data provided by the ATLAS experiment. These inputs are separate from the common statistical framework and are only mentioned in this specific subsection as it allows the statistical model to be reused with a different channel or dataset in which the signal and background are not necessarily given as simulated data as it is in this case or are obtained from different sources.
 
 ## 4.3 Diphoton Statistical Model
 The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and reconstruction described in Sections 3.3 and 4.2, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
