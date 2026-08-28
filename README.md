@@ -279,9 +279,9 @@ Bayesian inference provides the framework for estimating the model parameters fr
 
 $$ P(\theta|D)=\frac{P(D|\theta)P(\theta)}{P(D)}, $$
 
-where \(D\) represents the observed data and \(\theta\) represents the model parameters. In this analysis, the likelihood \(P(D|\theta)\) is the Poisson likelihood defined in Section 4, while the prior \(P(\theta)\) specifies the parameter space considered before incorporating the observed data. The resulting posterior is discussed in Section 5.2. To reproduce this procedure for another analysis, the corresponding model parameters and their prior distributions must first be defined before constructing the posterior.
+where $D$ represents the observed data and $\theta$ represents the model parameters. In this analysis, the likelihood $P(D|\theta)$ is the Poisson likelihood defined in Section 4, while the prior $P(\theta)$ specifies the parameter space considered before incorporating the observed data. The resulting posterior is discussed in Section 5.2. To reproduce this procedure for another analysis, the corresponding model parameters and their prior distributions must first be defined before constructing the posterior.
 
-For the four-lepton channel, the parameter of interest is the signal strength \(\mu\), which scales the Monte Carlo signal prediction according to
+For the four-lepton channel, the parameter of interest is the signal strength $(\mu)$, which scales the Monte Carlo signal prediction according to
 
 $$ \lambda_i(\mu)=\mu s_i+b_i. $$
 
@@ -289,9 +289,9 @@ The analysis assigns a uniform prior over the range \(0\leq\mu\leq5\):
 
 $$ \mu\sim\mathrm{Uniform}(0,5). $$
 
-This restricts the signal strength to non-negative values while allowing the fit to explore signal contributions up to five times the nominal prediction. The lower bound corresponds to the absence of a signal, \(\mu=0\), while \(\mu=1\) corresponds to the nominal signal prediction. When adapting the analysis to another dataset, this prior range can be modified according to the parameterization and physical assumptions of that analysis.
+This restricts the signal strength to non-negative values while allowing the fit to explore signal contributions up to five times the nominal prediction. The lower bound corresponds to the absence of a signal, $(\mu=0)$, while $(\mu=1)$ corresponds to the nominal signal prediction. When adapting the analysis to another dataset, this prior range can be modified according to the parameterization and physical assumptions of that analysis.
 
-The diphoton channel uses a fourth-degree polynomial to model the background, so its fitted parameters include both the signal normalization \(N_{\mathrm{sig}}\) and the five polynomial coefficients. These parameters are treated as free parameters of the diphoton model rather than fixing the background shape in advance. The polynomial parameterization is defined in Section 4.3, while its incorporation into the Bayesian model is described in Section 5.3.
+The diphoton channel uses a fourth-degree polynomial to model the background, so its fitted parameters include both the signal normalization $N_{sig}$ and the five polynomial coefficients. These parameters are treated as free parameters of the diphoton model rather than fixing the background shape in advance. The polynomial parameterization is defined in Section 4.3, while its incorporation into the Bayesian model is described in Section 5.3.
 
 The priors therefore establish the parameter space explored by the inference procedure. Once the priors are combined with the likelihood from Section 4, BAT.jl samples the resulting posterior distribution, allowing the preferred parameter values and their associated uncertainties to be determined.
 
@@ -300,15 +300,15 @@ The posterior distribution combines the information contained in the observed da
 
 $$ P(\mu|D)\propto\mathcal{L}(\mu)P(\mu), $$
 
-where \(\mathcal{L}(\mu)\) is the signal-plus-background likelihood from Section 4 and \(P(\mu)\) is the uniform prior. BAT.jl evaluates this posterior numerically rather than requiring an analytic solution. To reproduce the analysis, the same construction can be applied by supplying the appropriate likelihood and prior for the parameters of a different dataset or decay channel.
+where 𝓛(\mu)$ is the signal-plus-background likelihood from Section 4 and $P(\mu)$ is the uniform prior. BAT.jl evaluates this posterior numerically rather than requiring an analytic solution. To reproduce the analysis, the same construction can be applied by supplying the appropriate likelihood and prior for the parameters of a different dataset or decay channel.
 
-The resulting posterior describes which values of \(\mu\) are most consistent with the observed \(m_{4\ell}\) distribution. From the posterior samples, the analysis calculates the posterior mean, median, standard deviation, mode, and 68% and 95% credible intervals. The posterior mode is also used to obtain the best-fit signal strength and corresponding fitted model. These quantities provide both an estimate of the preferred signal contribution and a measure of the uncertainty in that estimate.
+The resulting posterior describes which values of $\mu$ are most consistent with the observed $(m_{4\ell})$ distribution. From the posterior samples, the analysis calculates the posterior mean, median, standard deviation, mode, and 68% and 95% credible intervals. The posterior mode is also used to obtain the best-fit signal strength and corresponding fitted model. These quantities provide both an estimate of the preferred signal contribution and a measure of the uncertainty in that estimate.
 
 For the diphoton channel, the posterior is instead defined over the full set of fitted parameters,
 
 $$ \theta_{\gamma\gamma}=(N_{\mathrm{sig}},p_1,p_2,p_3,p_4,p_5), $$
 
-where \(N_{\mathrm{sig}}\) controls the signal contribution and \(p_1,\ldots,p_5\) determine the fourth-degree polynomial background. The posterior therefore accounts for the simultaneous variation of the signal normalization and background-shape parameters. This same approach can be adapted to other analyses by replacing these parameters with the corresponding signal and background parameters of the model.
+where $N_{sig}$ controls the signal contribution and \(p_1,\ldots,p_5\) determine the fourth-degree polynomial background. The posterior therefore accounts for the simultaneous variation of the signal normalization and background-shape parameters. This same approach can be adapted to other analyses by replacing these parameters with the corresponding signal and background parameters of the model.
 
 In both channels, the posterior samples provide the basis for the parameter estimates and uncertainty intervals reported later in this section. The next subsection shows how these posterior distributions are constructed and sampled computationally using BAT.jl.
 
