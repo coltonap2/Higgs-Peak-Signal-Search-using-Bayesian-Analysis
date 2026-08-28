@@ -360,14 +360,16 @@ $$
 The posterior mean and median are $2.4126$ and $2.3583$, respectively, with a posterior standard deviation of $0.7509$. The corresponding credible intervals are
 
 $$
-\mu \in [1.6427,\ 3.1832] for (68%),
+\mu \in [1.6427,\ 3.1832],
 $$
 
-and
+for (68%) and
 
 $$
-\mu \in [1.1394,\ 3.9999] for (95%).
+\mu \in [1.1394,\ 3.9999]
 $$
+
+for (95%).
 
 Thus, within the signal-plus-background model defined in Section 4.2, the observed four-lepton data favor a signal contribution corresponding to a signal strength greater than the nominal Standard Model value of $\mu=1$. These values summarize the parameter inference produced by the Bayesian fit; they are not interpreted as a discovery significance, which is addressed separately through the pseudo-experiment analysis in Section 6.
 
@@ -383,14 +385,16 @@ $$
 The posterior mean and median of the signal yield are $434.13$ and $420.36$, respectively, with a posterior standard deviation of $244.75$. The corresponding credible intervals are
 
 $$
-N_{\mathrm{sig}} \in [164.65,\ 705.75] for (68%),
+N_{sig} \in [164.65,\ 705.75] for (68%),
 $$
 
-and
+for (68%) and
 
 $$
-N_{\mathrm{sig}} \in [30.38,\ 916.72] for (95%).
-$$
+N_{sig} \in [30.38,\ 916.72]
+$$ 
+
+for (95%).
 
 The refined best-fit values of the polynomial background parameters are
 
