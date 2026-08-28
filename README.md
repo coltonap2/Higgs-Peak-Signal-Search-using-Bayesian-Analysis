@@ -30,7 +30,7 @@ The Open Data release provides both real collision data and simulated Monte Carl
 
 This analysis uses two complementary ATLAS data collections:
 
-Four-lepton channel: The ATLAS 13 TeV 4l dataset$^1$ provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
+Four-lepton channel: The ATLAS 13 TeV 4l dataset [1] provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
 Diphoton channel: The [ATLAS 13 TeV $\gamma\gamma$ samples collection] provides events preselected to contain at least two photons. The collection consists of 10 files, totaling approximately 3.5 GiB.
 
 The released collections therefore serve as the starting point for the analysis rather than the final datasets used for inference. The ATLAS Open Data samples have already undergone a loose preselection designed to identify events containing the relevant reconstructed objects. The analysis then reads these released event-level variables and applies the additional processing described in Sections 3 and 4.
