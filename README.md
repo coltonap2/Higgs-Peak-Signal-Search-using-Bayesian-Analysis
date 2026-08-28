@@ -161,7 +161,7 @@ The noisier diphoton channel requires eight cuts, some of which are already flag
 ## 4.1 Common Structure of the Model
 The statistical model provides the common framework used to analyze the selected invariant-mass distributions in both Higgs decay channels. While the four-lepton and diphoton channels have different event selections and signal and background models, both are reduced to the same statistical problem: comparing the observed number of events in each invariant-mass bin with the number expected from signal and background contributions.
 
-This section describes the statistical structure shared by both channels. The channel-specific construction of the signal and background models is described separately in Sections 5.2 and 5.3.
+This section describes the statistical structure shared by both channels. The channel-specific construction of the signal and background models is described separately in Sections 4.2 and 4.3.
 
 Binned Signal-Plus-Background Model
 
@@ -187,7 +187,7 @@ $$ \mu = 1 $$
 
 represents the nominal signal-plus-background hypothesis.
 
-The same parameterization is used for both decay channels. The values of $s_i$ and $b_i$, however, are determined independently for the four-lepton and diphoton analyses and are described in Sections 5.2 and 5.3.
+The same parameterization is used for both decay channels. The values of $s_i$ and $b_i$, however, are determined independently for the four-lepton and diphoton analyses and are described in Sections 4.2 and 4.3.
 
 Poisson Likelihood
 
@@ -209,7 +209,7 @@ Substituting the signal-plus-background model gives
 𝓛(\mu) = \prod_i \frac{(\mu s_i+b_i)^{n_i} e^{-(\mu s_i+b_i)}}{n_i!}.
 ```
 
-This likelihood is the central statistical object passed to the Bayesian inference procedure in Section 6.
+This likelihood is the central statistical object passed to the Bayesian inference procedure in Section 5.
 
 Separating the Statistical Model from the Physics Inputs
 
@@ -236,10 +236,11 @@ $$ \text{Invariant-Mass Distribution} \rightarrow \text{Binning} \rightarrow (n_
 
 The four-lepton and diphoton analyses follow this same statistical structure. Their differences arise in how the signal and background contributions are obtained from their respective datasets, which is described in the following sections.
 
-The Bayesian prior, posterior distribution, and implementation of this likelihood in BAT.jl are intentionally treated separately in Section 6.
+The Bayesian prior, posterior distribution, and implementation of this likelihood in BAT.jl are intentionally treated separately in Section 5.
 
 ## 4.2 Four-Lepton Statistical Model
-The four-lepton statistical model applies the common signal-plus-background framework to the reconstructed four-lepton invariant-mass distribution, $m_{4\ell}$. After the event selection and reconstruction described in Sections 3.2 and 4.1, the selected events are divided into bins of $m_{4\ell}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
+The four-lepton statistical model applies the common signal-plus-background framework to the reconstructed four-lepton invariant-mass distribution, $m_{4\ell}$. After the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{4\ell}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
+
 
 For each $m_{4\ell}$ bin, the expected event count is
 
@@ -254,7 +255,7 @@ $$ m_{4\ell} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \r
 The values for $s_i$ and $b_i$ are obtained from the Monte Carlo simulated data provided by the ATLAS experiment. These inputs are separate from the common statistical framework and are only mentioned in this specific subsection as it allows the statistical model to be reused with a different channel or dataset in which the signal and background are not necessarily given as simulated data as it is in this case or are obtained from different sources.
 
 ## 4.3 Diphoton Statistical Model
-The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and reconstruction described in Sections 3.3 and 4.2, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
+The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
 
 For each $m_{\gamma\gamma}$ bin, the expected event count is
 
