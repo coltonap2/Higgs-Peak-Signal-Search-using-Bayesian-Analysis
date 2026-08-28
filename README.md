@@ -255,19 +255,19 @@ $$ m_{4\ell} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \r
 The values for $s_i$ and $b_i$ are obtained from the Monte Carlo simulated data provided by the ATLAS experiment. These inputs are separate from the common statistical framework and are only mentioned in this specific subsection as it allows the statistical model to be reused with a different channel or dataset in which the signal and background are not necessarily given as simulated data as it is in this case or are obtained from different sources.
 
 ## 4.3 Diphoton Statistical Model
-The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
+The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and B_i$.
 
 For each $m_{\gamma\gamma}$ bin, the expected event count is
 
-$$ \lambda_i(\mu)=\mu s_i+b_i. $$
+$$ \lambda_i(N_{sig})=N_{sig} s_i+B_i. $$
 
-Here, $s_i$ represents the expected Higgs contribution to the diphoton distribution and $b_i$ represents the expected background contribution. As in the four-lepton channel, $\mu$ controls the strength of the signal contribution, allowing the same statistical model to be applied without modification.
+Here, $s_i$ represents the expected Higgs contribution to the diphoton distribution and $B_i$ represents the expected background contribution. As in the four-lepton channel, $N_{sig}$ controls the strength of the signal contribution, allowing the same statistical model to be applied without modification.
 
 The diphoton model can therefore be summarized as
 
-$$ m_{\gamma\gamma} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \rightarrow \lambda_i(\mu) \rightarrow \mathcal{L}(\mu). $$
+$$ m_{\gamma\gamma} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,B_i) \rightarrow \lambda_i(N_{sig}) \rightarrow \mathcal{L}(N_{sig}). $$
 
-The primary difference from the four-lepton specific model is the construction of the signal and background distributions used to obtain $s_i$ and $b_i$. Just as in the four-lepton model, $s_i$ is Monte Carlo (MC) simulated and given by CERN. However, this is not true for the background ($b_i$) where it was for the four-lepton model. In order to rectify this lack of MC data for the background, we use a fourth-degree polynomial for $b_i$ and denote it $B_i$ to differentiate from the lower-case b notation in the four-lepton model. A similar shift in notation we apply to the signal strength parameter $\mu$ which we denote $N_{sig}$ to differentiate from the four-lepton model that uses $\mu$. Once the outputs of this model for $\lambda_i(\mu)$ are obtained, they are fed through the same common likelihood framework as we describe in 5.1.
+The primary difference from the four-lepton specific model is the construction of the signal and background distributions used to obtain $s_i$ and $b_i$. Just as in the four-lepton model, $s_i$ is Monte Carlo (MC) simulated and given by CERN. However, this is not true for the background ($b_i$) where it was for the four-lepton model. In order to rectify this lack of MC data for the background, we use a fourth-degree polynomial for $b_i$ and denote it $B_i$ to differentiate from the lower-case b notation in the four-lepton model. A similar shift in notation we apply to the signal strength parameter $\mu$ which we denote $N_{sig}$ to differentiate from the four-lepton model that uses $\mu$. Once the outputs of this model for $\lambda_i(N_{sig})$ are obtained, they are fed through the same common likelihood framework as we describe in 5.1.
 
 Of important note is the choice of the type of polynomial for $B_i$. [This paper](https://arxiv.org/abs/2202.00487) suggests that background events consistent with the diphoton channel follow a distribution that counts like a polynomial of fourth degree, hence this specific choice, a choice that was not necessary in the four-lepton model. 
 
