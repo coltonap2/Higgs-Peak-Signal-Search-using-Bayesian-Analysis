@@ -44,7 +44,7 @@ The remainder of this section describes how the two released datasets are organi
 Official ATLAS documentation for the datasets and their event-level properties is provided in the References. These resources should be consulted when reproducing the analysis or adapting the workflow to another ATLAS Open Data sample.
 
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
-The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) from the 2020 Open Data release. The collection contains both real collision data and simulated Monte Carlo samples representing relevant background and signal processes.
+The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) from the 2020 Open Data release[[1](https://opendata.cern.ch/record/15005)]. The collection contains both real collision data and simulated Monte Carlo samples representing relevant background and signal processes.
 
 Understanding the Event Data
 
@@ -78,7 +78,7 @@ The units of the released variables should also be checked before analysis. In t
 The specific criteria applied to these variables are described in Section 3.2, while the construction of the four-lepton observable is described in Section 4.1.
 
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
-The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection from the 2020 Open Data release. Like the four-lepton collection, it contains real collision data together with Monte Carlo simulated samples representing relevant background and signal processes.
+The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection from the 2020 Open Data release[[2](https://opendata.cern.ch/record/15006)]. Like the four-lepton collection, it contains real collision data together with Monte Carlo simulated samples representing relevant background and signal processes.
 
 Understanding the Event Data
 
