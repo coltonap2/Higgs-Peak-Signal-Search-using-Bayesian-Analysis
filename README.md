@@ -161,8 +161,8 @@ The noisier diphoton channel requires eight cuts, some of which are already flag
 
 The code for the diphoton cuts used are in the “cuts” folder. The file “13TeV_Cutting_Data.jl” contains code that cuts the actual event data while the file “13TeV_Cutting_MC.jl” contains code that cuts the MC (Monte Carlo) data provided by CERN through simulations. Both are julia files.
 
-# 4. Statistical Model
-## 4.1 Common Structure of the Model
+# 4. Statistical Model (Fitting)
+## 4.1 Common Structure of the Model (Fit Function)
 The statistical model provides the common framework used to analyze the selected invariant-mass distributions in both Higgs decay channels. While the four-lepton and diphoton channels have different event selections and signal and background models, both are reduced to the same statistical problem: comparing the observed number of events in each invariant-mass bin with the number expected from signal and background contributions.
 
 This section describes the statistical structure shared by both channels. The channel-specific construction of the signal and background models is described separately in Sections 4.2 and 4.3.
