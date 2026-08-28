@@ -285,7 +285,7 @@ For the four-lepton channel, the parameter of interest is the signal strength $(
 
 $$ \lambda_i(\mu)=\mu s_i+b_i. $$
 
-The analysis assigns a uniform prior over the range \(0\leq\mu\leq5\):
+The analysis assigns a uniform prior over the range $(0\leq\mu\leq5)$:
 
 $$ \mu\sim\mathrm{Uniform}(0,5). $$
 
@@ -298,7 +298,7 @@ The priors therefore establish the parameter space explored by the inference pro
 ## 5.2 Posterior Distribution
 The posterior distribution combines the information contained in the observed data with the prior assumptions described above. For the four-lepton channel, the posterior for the signal strength is proportional to
 
-$$ P(\mu|D)\propto\mathcal{L}(\mu)P(\mu), $$
+$$ P(\mu|D)\propto\mathcal{𝓛}(\mu)P(\mu), $$
 
 where 𝓛(\mu)$ is the signal-plus-background likelihood from Section 4 and $P(\mu)$ is the uniform prior. BAT.jl evaluates this posterior numerically rather than requiring an analytic solution. To reproduce the analysis, the same construction can be applied by supplying the appropriate likelihood and prior for the parameters of a different dataset or decay channel.
 
@@ -308,7 +308,7 @@ For the diphoton channel, the posterior is instead defined over the full set of 
 
 $$ \theta_{\gamma\gamma}=(N_{\mathrm{sig}},p_1,p_2,p_3,p_4,p_5), $$
 
-where $N_{sig}$ controls the signal contribution and \(p_1,\ldots,p_5\) determine the fourth-degree polynomial background. The posterior therefore accounts for the simultaneous variation of the signal normalization and background-shape parameters. This same approach can be adapted to other analyses by replacing these parameters with the corresponding signal and background parameters of the model.
+where $N_{sig}$ controls the signal contribution and $(p_1,\ldots,p_5)$ determine the fourth-degree polynomial background. The posterior therefore accounts for the simultaneous variation of the signal normalization and background-shape parameters. This same approach can be adapted to other analyses by replacing these parameters with the corresponding signal and background parameters of the model.
 
 In both channels, the posterior samples provide the basis for the parameter estimates and uncertainty intervals reported later in this section. The next subsection shows how these posterior distributions are constructed and sampled computationally using BAT.jl.
 
