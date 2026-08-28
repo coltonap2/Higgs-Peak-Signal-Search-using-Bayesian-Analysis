@@ -313,7 +313,6 @@ where $N_{sig}$ controls the signal contribution and $(p_1,\ldots,p_5)$ determin
 In both channels, the posterior samples provide the basis for the parameter estimates and uncertainty intervals reported later in this section. The next subsection shows how these posterior distributions are constructed and sampled computationally using BAT.jl.
 
 ## 5.3 BAT.jl Implementation
-## 5.3 BAT.jl Implementation
 
 The Bayesian model is implemented numerically using the Julia package **BAT.jl**. The implementation follows directly from the likelihood and prior defined in the preceding sections, allowing the posterior distribution to be sampled rather than evaluated only at a single parameter value. The same general procedure is used for both decay channels, with the set of floated parameters changing according to the channel-specific model described in Sections 4.2 and 4.3.
 
@@ -361,13 +360,13 @@ $$
 The posterior mean and median are $2.4126$ and $2.3583$, respectively, with a posterior standard deviation of $0.7509$. The corresponding credible intervals are
 
 $$
-\mu \in [1.6427,\ 3.1832] \qquad (68%),
+\mu \in [1.6427,\ 3.1832] for (68%),
 $$
 
 and
 
 $$
-\mu \in [1.1394,\ 3.9999] \qquad (95%).
+\mu \in [1.1394,\ 3.9999] for (95%).
 $$
 
 Thus, within the signal-plus-background model defined in Section 4.2, the observed four-lepton data favor a signal contribution corresponding to a signal strength greater than the nominal Standard Model value of $\mu=1$. These values summarize the parameter inference produced by the Bayesian fit; they are not interpreted as a discovery significance, which is addressed separately through the pseudo-experiment analysis in Section 6.
@@ -384,13 +383,13 @@ $$
 The posterior mean and median of the signal yield are $434.13$ and $420.36$, respectively, with a posterior standard deviation of $244.75$. The corresponding credible intervals are
 
 $$
-N_{\mathrm{sig}} \in [164.65,\ 705.75] \qquad (68%),
+N_{\mathrm{sig}} \in [164.65,\ 705.75] for (68%),
 $$
 
 and
 
 $$
-N_{\mathrm{sig}} \in [30.38,\ 916.72] \qquad (95%).
+N_{\mathrm{sig}} \in [30.38,\ 916.72] for (95%).
 $$
 
 The refined best-fit values of the polynomial background parameters are
