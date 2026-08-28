@@ -385,7 +385,7 @@ $$
 The posterior mean and median of the signal yield are $434.13$ and $420.36$, respectively, with a posterior standard deviation of $244.75$. The corresponding credible intervals are
 
 $$
-N_{sig} \in [164.65,\ 705.75] for (68%),
+N_{sig} \in [164.65,\ 705.75],
 $$
 
 for (68%) and
