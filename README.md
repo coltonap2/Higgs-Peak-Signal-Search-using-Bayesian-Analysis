@@ -313,6 +313,45 @@ where $N_{sig}$ controls the signal contribution and $(p_1,\ldots,p_5)$ determin
 In both channels, the posterior samples provide the basis for the parameter estimates and uncertainty intervals reported later in this section. The next subsection shows how these posterior distributions are constructed and sampled computationally using BAT.jl.
 
 ## 5.3 BAT.jl Implementation
+## 5.3 BAT.jl Implementation
+
+The Bayesian model is implemented numerically using the Julia package **BAT.jl**. The implementation follows directly from the likelihood and prior defined in the preceding sections, allowing the posterior distribution to be sampled rather than evaluated only at a single parameter value. The same general procedure is used for both decay channels, with the set of floated parameters changing according to the channel-specific model described in Sections 4.2 and 4.3.
+
+The first step is to implement the logarithm of the Poisson likelihood. For a given set of model parameters, the expected number of events in each bin is calculated from the signal-plus-background model, and the corresponding Poisson log-probabilities are summed over all bins:
+
+$$
+\log 𝓛 =
+\sum_i \log P(n_i \mid \lambda_i).
+$$
+
+Using the logarithm of the likelihood is convenient for numerical computation and is the form used by the BAT.jl sampling procedure.
+
+The prior distribution is then defined using BAT.jl's distribution interface. The prior and likelihood are combined with `PosteriorDensity` to construct the probability density that is sampled:
+
+```julia
+posterior = PosteriorDensity(log_likelihood_density, prior)
+```
+
+For the four-lepton model, the floated parameter is the signal strength $\mu$. The diphoton model additionally floats the five coefficients of its fourth-degree polynomial background model, so these coefficients are included as additional parameters in the posterior.
+
+The posterior is sampled using BAT.jl's MCMC interface. In this analysis, the Metropolis-Hastings algorithm is used with four chains and $10^5$ sampling steps:
+
+```julia
+samples = bat_sample(
+    posterior,
+    MCMCSampling(
+        mcalg = MetropolisHastings(),
+        nsteps = 10^5,
+        nchains = 4
+    )
+).result
+```
+
+The resulting samples provide a numerical representation of the posterior distribution. From these samples, the analysis calculates summary statistics for the floated parameters, including their mean, median, standard deviation, and 68% and 95% credible intervals. The posterior mode is also determined using `bat_findmode`, providing the best-fit parameter values used to construct the fitted signal-plus-background distributions.
+
+For replication, the essential procedure is therefore to provide BAT.jl with the appropriate binned observations, signal model, background model, and prior, construct the corresponding posterior, and sample it using the chosen MCMC algorithm. The resulting posterior samples can then be used to obtain parameter estimates and credible intervals, while the best-fit parameters can be substituted back into the model to compare the fitted expectation with the observed invariant-mass distribution.
+
+
 ## 5.4 Four-Lepton Results
 ## 5.5 Diphoton Results
 
