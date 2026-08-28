@@ -30,8 +30,8 @@ The Open Data release provides both real collision data and simulated Monte Carl
 
 This analysis uses two complementary ATLAS data collections:
 
-Four-lepton channel: The ATLAS 13 TeV 4l dataset [1] provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
-Diphoton channel: The [ATLAS 13 TeV $\gamma\gamma$ samples collection] provides events preselected to contain at least two photons. The collection consists of 10 files, totaling approximately 3.5 GiB.
+Four-lepton channel: The ATLAS 13 TeV 4l dataset [[1](https://opendata.cern.ch/record/15005)] provides events preselected to contain at least four electrons or muons. The collection consists of 111 files, totaling approximately 930.5 MiB.
+Diphoton channel: The ATLAS 13 TeV $\gamma\gamma$ samples collection [[2](https://opendata.cern.ch/record/15006)]provides events preselected to contain at least two photons. The collection consists of 10 files, totaling approximately 3.5 GiB.
 
 The released collections therefore serve as the starting point for the analysis rather than the final datasets used for inference. The ATLAS Open Data samples have already undergone a loose preselection designed to identify events containing the relevant reconstructed objects. The analysis then reads these released event-level variables and applies the additional processing described in Sections 3 and 4.
 
@@ -132,7 +132,7 @@ This documentation is particularly important when reproducing or modifying the a
 This crucial step reduces noise from irrelevant detections by eliminating events that fail to meet the desired criteria.  The ultimate goal is to produce an invariant mass distribution, which can then be fit and analyzed for the desired Higgs spike.  The two detection channels each require a distinct set of cuts, as detailed below:
 
 ## 3.2 Four-Lepton Selection Criteria / Cuts
-The four-lepton channel is treated with a series of six cuts.  These cuts are motivated by the selection criteria laid out in the original Higgs Boson discovery paper, and are summarized as follows:
+The four-lepton channel is treated with a series of six cuts.  These cuts are motivated by the selection criteria laid out in the [original Higgs Boson discovery paper](https://opendata.cern.ch/record/15005), and are summarized as follows:
 
 | # | Cut | Criteria |
 |---|-----|----------|
@@ -425,6 +425,6 @@ The reported posterior quantities characterize the parameter inference obtained 
 ## References
 1. ATLAS Collaboration (2020). ATLAS 13 TeV samples collection at least four leptons (electron or muon), for 2020 Open Data release. CERN Open Data Portal. [DOI:10.7483/OPENDATA.ATLAS.2Y1T.TLGL](https://opendata.cern.ch/record/15005)
 
-ATLAS Collaboration (2020). ATLAS 13 TeV samples collection Gamma-Gamma, for 2020 Open Data release. CERN Open Data Portal. DOI:10.7483/OPENDATA.ATLAS.B5BJ.3SGS
+2. ATLAS Collaboration (2020). ATLAS 13 TeV samples collection Gamma-Gamma, for 2020 Open Data release. CERN Open Data Portal. [DOI:10.7483/OPENDATA.ATLAS.B5BJ.3SGS](https://opendata.cern.ch/record/15006)
 
 ATLAS Collaboration (2025). ATLAS 13 TeV Open Data: 2025 Beta Release. CERN Open Data Portal. https://opendata.atlas.cern/docs/category/13-tev-2025-beta-release
