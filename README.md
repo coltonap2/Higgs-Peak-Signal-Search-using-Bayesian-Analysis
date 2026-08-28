@@ -136,11 +136,11 @@ The four-lepton channel is treated with a series of six cuts.  These cuts are mo
 
 | # | Cut | Criteria |
 |---|-----|----------|
-| 1 | **Transverse momenta** | Electrons: \(p_T > 7\) GeV, \(\lvert\eta\rvert < 2.47\). Muons: \(p_T > 5\) GeV, \(\lvert\eta\rvert < 2.7\). Ordered leptons must additionally satisfy: 1st \(p_T > 20\) GeV, 2nd \(p_T > 15\) GeV, 3rd \(p_T > 10\) GeV |
+| 1 | **Transverse momenta** | Electrons: $\(p_T > 7\)$ GeV, $\(\lvert\eta\rvert < 2.47\)$. Muons: $\(p_T > 5\)$ GeV, $\(\lvert\eta\rvert < 2.7\)$. Ordered leptons must additionally satisfy: 1st $\(p_T > 20\)$ GeV, 2nd $\(p_T > 15\)$ GeV, 3rd $\(p_T > 10\)$ GeV |
 | 2 | **Charge/flavor** | Each event must contain two pairs of opposite-sign, same-flavor (OSSF) leptons |
-| 3 | **Mass pairings** | The OSSF pair with invariant mass closest to the Z boson (91.18 GeV) is chosen as the leading pair (Z1); the other pair is the subleading pair (Z2) |
-| 4 | **Mass bounds** | Leading pair: \(50 < m_{ll} < 106\) GeV. Subleading pair: \(12 < m_{ll} < 115\) GeV |
-| 5 | **Resonance veto** | All OSSF pairs must have \(m_{ll} > 5\) GeV (removes J/ψ and Υ meson decay contamination) |
+| 3 | **Mass pairings** | The OSSF pair with invariant mass closest to the Z boson (91.18 GeV) is chosen as the leading pair $(Z_1)$; the other pair is the subleading pair $(Z_2)$ |
+| 4 | **Mass bounds** | Leading pair: $\(50 < m_{ll} < 106\)$ GeV. Subleading pair: $\(12 < m_{ll} < 115\)$ GeV |
+| 5 | **Resonance veto** | All OSSF pairs must have $\(m_{ll} > 5\)$ GeV (removes $J/\psi$ and $\Upsilon$ meson decay contamination) |
 | 6 | **Lepton separation** | Minimum separation of 0.1 for OSSF pairs, 0.2 for differently-flavored pairs (removes overlapping detections) |
 
 ## 3.3 Diphoton Selection Criteria / Cuts
@@ -149,13 +149,13 @@ The noisier diphoton channel requires eight cuts, some of which are already flag
 | # | Cut | Criteria |
 |---|-----|----------|
 | 1 | **Photon trigger** | Selects all events already identified by CERN's photon trigger |
-| 2 | **Pseudorapidity** | \(\lvert\eta\rvert < 2.37\) for each photon |
-| 3 | **Crack veto** | Excludes photons with pseudorapidity in the detector's geometric "crack": \(1.37 < \lvert\eta\rvert < 1.52\) |
-| 4 | **Transverse momentum** | Leading photon: \(p_T > 40\) GeV. Subleading photon: \(p_T > 30\) GeV |
+| 2 | **Pseudorapidity** | $\(\lvert\eta\rvert < 2.37\)$ for each photon |
+| 3 | **Crack veto** | Excludes photons with pseudorapidity in the detector's geometric "crack": $\(1.37 < \lvert\eta\rvert < 1.52\)$ |
+| 4 | **Transverse momentum** | Leading photon: $\(p_T > 40\)$ GeV. Subleading photon: $\(p_T > 30\)$ GeV |
 | 5 | **Tight photon identification** | Excludes candidates that fail CERN's photon identification criteria |
 | 6 | **Photon isolation** | Maximum track isolation of 5%, calorimetric isolation < 6.5% |
-| 7 | **E_T / m_γγ ratio** | Minimum ratio of 0.35 for leading photon, 0.25 for subleading photon |
-| 8 | **Diphoton mass** | Diphoton candidates restricted to \(105 < m_{\gamma\gamma} < 160\) GeV |
+| 7 | **$E_T / m_γγ$ ratio** | Minimum ratio of 0.35 for leading photon, 0.25 for subleading photon |
+| 8 | **Diphoton mass** | Diphoton candidates restricted to $\(105 < m_{\gamma\gamma} < 160\)$ GeV |
 
 # 4. Statistical Model
 ## 4.1 Common Structure of the Model
