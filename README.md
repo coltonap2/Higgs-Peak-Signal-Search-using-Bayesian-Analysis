@@ -143,6 +143,8 @@ The four-lepton channel is treated with a series of six cuts.  These cuts are mo
 | 5 | **Resonance veto** | All OSSF pairs must have $\(m_{ll} > 5\)$ GeV (removes $J/\psi$ and $\Upsilon$ meson decay contamination) |
 | 6 | **Lepton separation** | Minimum separation of 0.1 for OSSF pairs, 0.2 for differently-flavored pairs (removes overlapping detections) |
 
+The code for the four-lepton cuts used are in the “cuts” folder, specifically “13TeV_4l_cuts.py” which is a python file.
+
 ## 3.3 Diphoton Selection Criteria / Cuts
 The noisier diphoton channel requires eight cuts, some of which are already flagged in the CERN dataset.  These cuts are made in accordance with the selection criteria from a newer 2022 paper for $\sqrt{s} = 13$ TeV:
 
@@ -156,6 +158,8 @@ The noisier diphoton channel requires eight cuts, some of which are already flag
 | 6 | **Photon isolation** | Maximum track isolation of 5%, calorimetric isolation < 6.5% |
 | 7 | **$E_T / m_γγ$ ratio** | Minimum ratio of 0.35 for leading photon, 0.25 for subleading photon |
 | 8 | **Diphoton mass** | Diphoton candidates restricted to $\(105 < m_{\gamma\gamma} < 160\)$ GeV |
+
+The code for the diphoton cuts used are in the “cuts” folder. The file “13TeV_Cutting_Data.jl” contains code that cuts the actual event data while the file “13TeV_Cutting_MC.jl” contains code that cuts the MC (Monte Carlo) data provided by CERN through simulations. Both are julia files.
 
 # 4. Statistical Model
 ## 4.1 Common Structure of the Model
