@@ -255,7 +255,7 @@ $$ m_{4\ell} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \r
 The values for $s_i$ and $b_i$ are obtained from the Monte Carlo simulated data provided by the ATLAS experiment. These inputs are separate from the common statistical framework and are only mentioned in this specific subsection as it allows the statistical model to be reused with a different channel or dataset in which the signal and background are not necessarily given as simulated data as it is in this case or are obtained from different sources.
 
 ## 4.3 Diphoton Statistical Model
-The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and B_i$.
+The diphoton statistical model uses the same signal-plus-background structure, applied to the reconstructed diphoton invariant-mass distribution, $m_{\gamma\gamma}$. Following the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{\gamma\gamma}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $B_i$.
 
 For each $m_{\gamma\gamma}$ bin, the expected event count is
 
