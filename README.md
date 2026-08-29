@@ -141,8 +141,6 @@ The four-lepton channel is treated with a series of six cuts.  These cuts are mo
 | 5 | **Resonance veto** | All OSSF pairs must have $\(m_{ll} > 5\)$ GeV (removes $J/\psi$ and $\Upsilon$ meson decay contamination) |
 | 6 | **Lepton separation** | Minimum separation of 0.1 for OSSF pairs, 0.2 for differently-flavored pairs (removes overlapping detections) |
 
-<img width="533" height="400" alt="lepton full spectrum plot" src="https://github.com/user-attachments/assets/f9baed7b-f369-4d3d-aadf-3c350f2ef528" />
-
 The code for the four-lepton cuts used are in the “cuts” folder, specifically “13TeV_4l_cuts.py” which is a python file.
 
 ## 3.3 Diphoton Selection Criteria / Cuts
@@ -245,7 +243,6 @@ The Bayesian prior, posterior distribution, and implementation of this likelihoo
 ## 4.2 Four-Lepton Statistical Model
 The four-lepton statistical model applies the common signal-plus-background framework to the reconstructed four-lepton invariant-mass distribution, $m_{4\ell}$. After the event selection and invariant-mass reconstruction, the selected events are divided into bins of $m_{4\ell}$. The observed number of events in each bin provides $n_i$, while the corresponding signal and background models provide $s_i$ and $b_i$.
 
-
 For each $m_{4\ell}$ bin, the expected event count is
 
 $$ \lambda_i(\mu)=\mu s_i+b_i. $$
@@ -255,6 +252,10 @@ Here, $s_i$ represents the expected Higgs contribution to the four-lepton distri
 The four-lepton model can therefore be summarized as
 
 $$ m_{4\ell} \rightarrow \text{Binned Distribution} \rightarrow (n_i,s_i,b_i) \rightarrow \lambda_i(\mu) \rightarrow \mathcal{L}(\mu). $$
+
+Once we have the cut data and a statistical model, we understand how to separate the data and visualize it. We plot the MC signal (red) and background (blue) events as bar graphs on the plot below and also include observed event data points (black) with uncertainty. The region of interest (where the Higgs is expected to give a signal) is highlighted in yellow. The code for this plot can be found in the "fit_functions" folder, under the file name "fit_function_4lep_13tev.jl". This code is more thoroughly explained in section 5.
+
+<img width="533" height="400" alt="lepton full spectrum plot" src="https://github.com/user-attachments/assets/f9baed7b-f369-4d3d-aadf-3c350f2ef528" />
 
 The values for $s_i$ and $b_i$ are obtained from the Monte Carlo simulated data provided by the ATLAS experiment. These inputs are separate from the common statistical framework and are only mentioned in this specific subsection as it allows the statistical model to be reused with a different channel or dataset in which the signal and background are not necessarily given as simulated data as it is in this case or are obtained from different sources.
 
