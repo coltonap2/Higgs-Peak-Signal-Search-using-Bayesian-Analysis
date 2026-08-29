@@ -39,12 +39,12 @@ $$ \text{ATLAS Open Data} \rightarrow \text{Data Preparation} \rightarrow \text{
 
 The remainder of this section describes how the two released datasets are organized and identifies the event-level variables used by the analysis. The specific selection criteria and reconstruction procedures are described separately in Sections 3 and 4.
 
-Official ATLAS documentation for the datasets and their event-level properties is provided in the References. These resources should be consulted when reproducing the analysis or adapting the workflow to another ATLAS Open Data sample.
+Official ATLAS documentation [[3](https://opendata.atlas.cern/docs/category/13-tev-2025-beta-release)] for the datasets and their event-level properties is provided in the References. These resources should be consulted when reproducing the analysis or adapting the workflow to another ATLAS Open Data sample.
 
 ## 2.2 Four-Lepton Dataset ($H \rightarrow ZZ^* \rightarrow 4 \ell$)
 The four-lepton analysis uses the ATLAS 13 TeV samples collection containing at least four leptons (electron or muon) from the 2020 Open Data release[[1](https://opendata.cern.ch/record/15005)]. The collection contains both real collision data and simulated Monte Carlo samples representing relevant background and signal processes. These samples and events are combined to create a large file to use as our data in this project.
 
-Understanding the Event Data
+<b>Understanding the Event Data</b>
 
 Each event in the released four-lepton collection contains information about the reconstructed leptons in that event. The dataset provides separate variables for up to four leptons, with the suffix _1 through _4 identifying the corresponding lepton.
 
@@ -63,7 +63,7 @@ The primary lepton-level variables used by this analysis are:
 
 These variables provide the basic kinematic and identification information required by the later stages of the analysis. The individual quantities are not themselves the final analysis observable; rather, they provide the information from which the event-selection and reconstruction procedures in Sections 3 and 4 operate.
 
-Dataset Organization
+<b>Dataset Organization</b>
 
 The released files contain both observed and simulated events. For the observed-data analysis, events are identified using the dataset classification provided in the file. Simulated samples are retained separately so that they can be used to characterize the expected signal and background contributions in the statistical analysis.
 
@@ -78,7 +78,7 @@ The specific criteria applied to these variables are described in Section 3.2, w
 ## 2.3 Diphoton Dataset ($H \rightarrow \gamma\gamma$)
 The diphoton analysis uses the ATLAS 13 TeV $\gamma\gamma$ samples collection from the 2020 Open Data release[[2](https://opendata.cern.ch/record/15006)]. Like the four-lepton collection, it contains real collision data together with Monte Carlo simulated samples representing relevant background and signal processes. The real events and the simulated data are cut separately as explained in Section 3 and then are recombined after cuts to be used for the statistical model developed in Section 4.
 
-Understanding the Event Data
+<b>Understanding the Event Data</b>
 
 Each event in the released diphoton collection contains information about the reconstructed photons in that event. Variables associated with the two photons are identified using the suffixes _1 and _2. For example, photon_pt_1 and photon_pt_2 contain the transverse momenta of the two reconstructed photons.
 
@@ -100,7 +100,7 @@ The primary variables used by this analysis are:
 
 These variables provide the event-level information used by the subsequent selection and reconstruction stages. Their specific application is intentionally described in later sections rather than duplicated here.
 
-Dataset Organization
+<b>Dataset Organization</b>
 
 As with the four-lepton collection, the diphoton files contain both observed and simulated events. The dataset variable distinguishes the different samples, allowing the observed collision data to be separated from simulated signal and background samples.
 
@@ -112,13 +112,13 @@ Several variables in the released dataset describe detector-level identification
 
 The specific requirements applied to these variables are described in Section 3.3, while the construction of the diphoton observable is described in Section 4.2.
 
-Working with the Released Data
+<b>Working with the Released Data</b>
 
 For reproducibility, the important distinction is between variables provided by ATLAS and quantities derived by the analysis. The released dataset supplies the underlying event-level measurements and flags, while later analysis code combines these quantities to produce the selected event sample and reconstructed observables.
 
 This separation allows the same workflow to be adapted to another compatible ATLAS dataset: the dataset-specific variables can be mapped to the corresponding analysis inputs, while the selection, reconstruction, and statistical procedures can be applied independently.
 
-Dataset Documentation
+<b>Dataset Documentation</b> [[3](https://opendata.atlas.cern/docs/category/13-tev-2025-beta-release)]
 
 The official ATLAS documentation should be used to verify the meaning, units, and representation of the variables in the released files. The documentation for both the four-lepton and diphoton collections is provided in the References.
 
@@ -130,7 +130,7 @@ This documentation is particularly important when reproducing or modifying the a
 This crucial step reduces noise from irrelevant detections by eliminating events that fail to meet the desired criteria.  The ultimate goal is to produce an invariant mass distribution, which can then be fit and analyzed for the desired Higgs spike.  The two detection channels each require a distinct set of cuts, as detailed below:
 
 ## 3.2 Four-Lepton Selection Criteria / Cuts
-The four-lepton channel is treated with a series of six cuts.  These cuts are motivated by the selection criteria laid out in the [original Higgs Boson discovery paper](https://opendata.cern.ch/record/15005), and are summarized as follows:
+The four-lepton channel is treated with a series of six cuts.  These cuts are motivated by the selection criteria laid out in the original Higgs Boson discovery paper [[4](https://opendata.cern.ch/record/15005)], and are summarized as follows:
 
 | # | Cut | Criteria |
 |---|-----|----------|
@@ -144,7 +144,7 @@ The four-lepton channel is treated with a series of six cuts.  These cuts are mo
 The code for the four-lepton cuts used are in the “cuts” folder, specifically “13TeV_4l_cuts.py” which is a python file.
 
 ## 3.3 Diphoton Selection Criteria / Cuts
-The noisier diphoton channel requires eight cuts, some of which are already flagged in the CERN dataset.  These cuts are made in accordance with the selection criteria from a newer 2022 paper for $\sqrt{s} = 13$ TeV:
+The noisier diphoton channel requires eight cuts, some of which are already flagged in the CERN dataset.  These cuts are made in accordance with the selection criteria from a newer 2022 paper for $\sqrt{s} = 13$ TeV [[5](https://arxiv.org/pdf/2202.00487)]:
 
 | # | Cut | Criteria |
 |---|-----|----------|
@@ -454,3 +454,7 @@ For the 𝛾𝛾 channel, the 5σ threshold was found to be a signal strength (N
 2. ATLAS Collaboration (2020). ATLAS 13 TeV samples collection Gamma-Gamma, for 2020 Open Data release. CERN Open Data Portal. [DOI:10.7483/OPENDATA.ATLAS.B5BJ.3SGS](https://opendata.cern.ch/record/15006)
 
 3. ATLAS Collaboration (2025). ATLAS 13 TeV Open Data: 2025 Beta Release. CERN Open Data Portal. https://opendata.atlas.cern/docs/category/13-tev-2025-beta-release
+
+4. ATLAS Collaboration. (2012). Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector at the LHC. Physics Letters B, 716(1), 1–29. [https://doi.org/10.1016/j.physletb.2012.08.020](https://arxiv.org/pdf/1207.7214)
+
+5. ATLAS Collaboration. (2022). Measurements of the Higgs boson inclusive and differential fiducial cross-sections in the diphoton decay channel with pp collisions at √s = 13 TeV with the ATLAS detector. Journal of High Energy Physics, 2022(8), 27. [https://doi.org/10.1007/JHEP08(2022)027](https://arxiv.org/pdf/2202.00487)
